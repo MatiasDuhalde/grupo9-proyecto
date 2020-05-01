@@ -1,0 +1,27 @@
+
+<h1>Editando Gusto existente</h1>
+
+<%= form_with(model: @gusto, method: :patch) do |f| %>
+
+    <div class="field" >
+
+        <%= f.label :gusto_nombre %>
+        <%= f.text_field :gusto_nombre %>
+
+    </div>
+
+    <div class="field" >
+
+        <%= f.label :gusto_descripcion %>
+        <%= f.text_area :gusto_descripcion %>
+
+    </div>
+
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+
+<% end %>
+
+<br/>
+<%= link_to "Volver al listado de Gustos", gustos_index_path %>
