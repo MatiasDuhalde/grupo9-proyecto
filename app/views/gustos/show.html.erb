@@ -1,0 +1,18 @@
+<p>
+    <strong> Nombre del Gusto: </strong>
+    <%= @gusto.gusto_nombre %>
+</p>
+<p>
+    <strong> Descripción del Gusto: </strong>
+    <%= @gusto.gusto_descripcion %>
+</p>
+
+<%= link_to "Volver al listado de gustos", gustos_index_path %>
+<br/>
+
+<% if current_user && current_user.admin %>
+    <%= link_to "Editar este gusto", gusto_edit_path(@gusto.id) %>
+    <br/>
+    <%= link_to "Eliminar este Gusto", gusto_path(@gusto.id), method: :delete, data: {confirm: "Está seguro?"} %>
+
+<% end %>

@@ -1,0 +1,13 @@
+
+<p>
+    <strong> Nombre comuna: </strong>
+    <%= @comuna.nombre_comuna %>
+</p>
+
+<%= link_to "Volver al listado de comunas", comunas_index_path %>
+<br/>
+<% if current_user && current_user.admin %>
+    <%= link_to "Editar esta comuna", comuna_edit_path(@comuna.id) %>
+    <br/>
+    <%= link_to "Eliminar esta comuna", comuna_path(@comuna.id), method: :delete, data: {confirm: "Está seguro?"} %>
+<% end %>
