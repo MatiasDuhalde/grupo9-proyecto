@@ -1,13 +1,10 @@
-
 <h1>Editando Comuna existente</h1>
 
 <%= form_with(model: @comuna, method: :patch) do |f| %>
 
     <div class="field" >
-
         <%= f.label :nombre_comuna %>
         <%= f.text_field :nombre_comuna %>
-
     </div>
 
     <div class="actions">
@@ -18,4 +15,3 @@
 
 <br/>
 <%= link_to "Volver al listado de comunas", comunas_index_path %>
-

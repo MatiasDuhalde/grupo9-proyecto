@@ -1,46 +1,30 @@
 <h1>Página Principal</h1>
 <p>Aquí podrás encontrar citas</p>
 
-
 <% if current_user %>
     <p>
-    <%= link_to "Edit Account", edit_user_registration_path %>
+        <%= link_to "Edit Account", edit_user_registration_path %>
     </p>
-
     <p>
-    <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
     </p>
-
     <p>
-    <%= link_to "Ver el listado de comunas", comunas_index_path %>
+        <%= link_to "Ver el listado de comunas", comunas_index_path %>
     </p>
-
     <p>
-    <%= link_to "Ver el listado de gustos", gustos_index_path %>
+        <%= link_to "Ver el listado de gustos", gustos_index_path %>
     </p>
-
     <br/>
-
     <% if current_user.ur_imagen.attached? %>
-
         <%= image_tag(current_user.ur_imagen) %>
-    
     <% else%>
-
         <p> No tienes imagen de perfil </p>
-    
     <% end %>
-
-
 <% else %>
-
     <p>
         <%= link_to "Create Account", new_user_registration_path %>
     </p>
-
     <p>
         <%= link_to "Sign In", new_user_session_path %>
     </p>
-
-
 <% end %>

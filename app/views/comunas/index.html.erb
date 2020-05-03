@@ -7,20 +7,14 @@
             <th>Acciones</th>
         </tr>
     </thead>
-
     <tbody>
         <% @comunas.each do |comuna| %>
-
             <tr>
                 <td> <%= comuna.nombre_comuna %> </td>
                 <td> <%= link_to "Ver detalles", comuna_path(comuna.id) %> </td>
             </tr>
-
         <% end %>
-
     </tbody>
-
-
 </table>
 
 <br>
