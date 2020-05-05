@@ -1,7 +1,6 @@
 <h1>Creando Nueva Comuna</h1>
 
 <%= form_with(model: @comuna_especifica, method: :post) do |f| %>
-
     <div class="field" >
         <%= f.label :nombre %>
         <%= f.text_field :nombre %>
@@ -10,7 +9,6 @@
     <div class="actions">
         <%= f.submit %>
     </div>
-
 <% end %>
 
 <%= link_to "Volver al listado de comunas", comunas_index_path %>

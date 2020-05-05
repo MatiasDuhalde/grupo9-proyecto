@@ -5,6 +5,7 @@
 
 <%= link_to "Volver al listado de comunas", comunas_index_path %>
 <br/>
+
 <% if current_user && current_user.admin %>
     <%= link_to "Editar esta comuna", comuna_edit_path(@comuna.id) %>
     <br/>
