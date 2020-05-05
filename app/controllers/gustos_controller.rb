@@ -42,6 +42,6 @@ class GustosController < ApplicationController
   private
 
   def gusto_params
-    params.require(:gusto).permit(:gusto_nombre, :gusto_descripcion)
+    params.require(:gusto).permit(:nombre, :descripcion)
   end
 end

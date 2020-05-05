@@ -13,8 +13,8 @@
         <% @gustos.each do |gusto| %>
 
             <tr>
-                <td> <%= gusto.gusto_nombre %> </td>
-                <td> <%= gusto.gusto_descripcion %> </td>
+                <td> <%= gusto.nombre %> </td>
+                <td> <%= gusto.descripcion %> </td>
                 <td> <%= link_to "Ver detalles", gusto_path(gusto.id) %> </td>
             </tr>
 

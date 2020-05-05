@@ -15,8 +15,8 @@
         <%= link_to "Ver el listado de gustos", gustos_index_path %>
     </p>
     <br/>
-    <% if current_user.ur_imagen.attached? %>
-        <%= image_tag(current_user.ur_imagen) %>
+    <% if current_user.imagen.attached? %>
+        <%= image_tag(current_user.imagen) %>
     <% else%>
         <p> No tienes imagen de perfil </p>
     <% end %>

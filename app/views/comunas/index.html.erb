@@ -10,7 +10,7 @@
     <tbody>
         <% @comunas.each do |comuna| %>
             <tr>
-                <td> <%= comuna.nombre_comuna %> </td>
+                <td> <%= comuna.nombre %> </td>
                 <td> <%= link_to "Ver detalles", comuna_path(comuna.id) %> </td>
             </tr>
         <% end %>

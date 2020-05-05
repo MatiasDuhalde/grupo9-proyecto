@@ -37,14 +37,14 @@ ActiveRecord::Schema.define(version: 2020_04_30_040302) do
   end
 
   create_table "comunas", force: :cascade do |t|
-    t.string "nombre_comuna"
+    t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "gustos", force: :cascade do |t|
-    t.string "gusto_nombre"
-    t.text "gusto_descripcion"
+    t.string "nombre"
+    t.text "descripcion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,11 +58,11 @@ ActiveRecord::Schema.define(version: 2020_04_30_040302) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "comuna_id"
-    t.integer "ur_edad"
-    t.integer "ur_telefono"
+    t.integer "edad"
+    t.integer "telefono"
     t.integer "gusto_id"
-    t.string "ur_nombre"
-    t.text "ur_descripcion"
+    t.string "nombre"
+    t.text "descripcion"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

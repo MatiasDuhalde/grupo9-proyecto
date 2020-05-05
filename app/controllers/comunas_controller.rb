@@ -42,6 +42,6 @@ class ComunasController < ApplicationController
   private
 
   def comuna_params
-    params.require(:comuna).permit(:nombre_comuna)
+    params.require(:comuna).permit(:nombre)
   end
 end
