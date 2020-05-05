@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Crear review</h1>
+
+<%= form_with(model: @review, method: :post) do |f| %>
+    <div class="field">
+        <%= f.label :calificacion %>
+        <%= f.text_field :calificacion %>
+    </div>
+
+    <div class="field">
+        <%= f.label :descripcion %>
+        <%= f.text_area :descripcion %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+<% end %>
+
+<%= link_to "Volver al listado de comunas", reviews_index_path %>
