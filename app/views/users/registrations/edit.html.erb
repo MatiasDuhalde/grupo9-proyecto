@@ -3,6 +3,51 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+  <% if current_user.imagen.attached? %>
+
+    <div class="field">
+      <%= image_tag(current_user.imagen) %>
+    </div>
+  
+  <% else%>
+      <p> No tienes imagen de perfil </p>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :imagen %><br />
+    <%= f.file_field :imagen %>
+  </div>
+
+  <div class="field">
+    <%= f.label :comuna_id %><br />
+    <%= f.text_field :comuna_id, autofocus: true, autocomplete: "comuna_id" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :edad %><br />
+    <%= f.text_field :edad, autofocus: true, autocomplete: "edad" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telefono %><br />
+    <%= f.text_field :telefono, autofocus: true, autocomplete: "telefono" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gusto_id %><br />
+    <%= f.text_field :gusto_id, autofocus: true, autocomplete: "gusto_id" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre, autofocus: true, autocomplete: "nombre" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :descripcion %><br />
+    <%= f.text_area :descripcion, autofocus: true, autocomplete: "descripcion" %>
+  </div>
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
