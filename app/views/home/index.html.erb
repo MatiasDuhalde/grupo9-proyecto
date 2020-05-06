@@ -3,12 +3,6 @@
 
 <% if current_user %>
     <p>
-        <%= link_to "Edit Account", edit_user_registration_path %>
-    </p>
-    <p>
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-    </p>
-    <p>
         <%= link_to "Ver el listado de comunas", comunas_index_path %>
     </p>
     <p>
@@ -20,10 +14,20 @@
     <% else%>
         <p> No tienes imagen de perfil </p>
     <% end %>
+    <br/>
+    <p>
+        <%= link_to "Edit Account", edit_user_registration_path %>
+    </p>
+    <p>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+    </p>
 <% elsif current_local %>
     <p> Hola Local! </p>
     <p>
         <%= link_to "Ver las reviews", reviews_index_path %>
+    </p>
+    <p>
+        <%= link_to "Sign Out", destroy_local_session_path, method: :delete %>
     </p>
 <% elsif current_admin %>
     <p> Hola Admin!</p>
@@ -32,6 +36,9 @@
     </p>
     <p>
         <%= link_to "Ver el listado de gustos", gustos_index_path %>
+    </p>
+    <p>
+        <%= link_to "Sign Out", destroy_admin_session_path, method: :delete %>
     </p>
 <% else %>
     <div style="display: flex; width:600px">
