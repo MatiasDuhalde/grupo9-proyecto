@@ -20,10 +20,8 @@
     </tbody>
 </table>
 
-<br>
+<br/>
+<%= link_to "Ver listado de reviews", reviews_index_path %>
+<br/>
 <%= link_to "Volver a la pagina principal", root_path %>
 <br/>
-
-<% if current_admin %>
-    <%= link_to "Crear Nuevo Gusto", gustos_new_path %>
-<% end %>

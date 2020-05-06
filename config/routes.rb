@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'home#index'
   # CREATE
   get 'reviews/new', to: 'reviews#new'
   post 'reviews', to: 'reviews#create'
@@ -34,13 +35,16 @@ Rails.application.routes.draw do
   patch 'comunas/:id', to: 'comunas#update'
   # DELETE
   delete 'comunas/:id', to: 'comunas#destroy'
-
-  root to: 'home#index'
+  # ------------------------------------------------------------------------------------------------
   devise_for :users, path: 'users', controllers: { sessions: "locals/sessions" }
+  # ------------------------------------------------------------------------------------------------
   devise_for :locals, path: 'locals', controllers: { sessions: "locals/sessions" }
   # READ
   get 'locals/index', to: 'locals#index'
   get 'locals/:id', to: 'locals#show', as: 'local'
+  # DELETE
+  delete 'locals/:id', to: 'locals#destroy'
+  # ------------------------------------------------------------------------------------------------
   devise_for :admins, path: 'admins', controllers: { sessions: "admins/sessions" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
