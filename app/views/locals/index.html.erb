@@ -1,0 +1,29 @@
+<h1>Lista de Locales</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre del Local</th>
+            <th>Descripción del Local</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @locals.each do |local| %>
+            <tr>
+                <td> <%= local.nombre %> </td>
+                <td> <%= local.descripcion %> </td>
+                <td> <%= link_to "Ver detalles", local_path(local.id) %> </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<br>
+<%= link_to "Volver a la pagina principal", root_path %>
+<br/>
+
+<% if current_admin %>
+    <%= link_to "Crear Nuevo Gusto", gustos_new_path %>
+<% end %>

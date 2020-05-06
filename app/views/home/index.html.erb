@@ -1,12 +1,15 @@
 <h1>Página Principal</h1>
-<p>Aquí podrás encontrar citas</p>
 
 <% if current_user %>
+    <p>Aquí podrás encontrar citas</p>
     <p>
         <%= link_to "Ver el listado de comunas", comunas_index_path %>
     </p>
     <p>
         <%= link_to "Ver el listado de gustos", gustos_index_path %>
+    </p>
+    <p>
+        <%= link_to "Ver el listado de locales", locals_index_path %>
     </p>
     <br/>
     <% if current_user.imagen.attached? %>
@@ -22,15 +25,20 @@
         <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
     </p>
 <% elsif current_local %>
-    <p> Hola Local! </p>
+    <p> Bienvenido </p>
+    <p> Este es el portal del local <%= current_local.nombre %> </p>
     <p>
         <%= link_to "Ver las reviews", reviews_index_path %>
+    </p>
+    <p>
+        <%= link_to "Edit Local", edit_local_registration_path %>
     </p>
     <p>
         <%= link_to "Sign Out", destroy_local_session_path, method: :delete %>
     </p>
 <% elsif current_admin %>
-    <p> Hola Admin!</p>
+    <p> Bienvenido </p>
+    <p> Este es el panel de control del administrador <%= current_admin.nombre %> </p>
     <p>
         <%= link_to "Ver el listado de comunas", comunas_index_path %>
     </p>
@@ -38,9 +46,13 @@
         <%= link_to "Ver el listado de gustos", gustos_index_path %>
     </p>
     <p>
+        <%= link_to "Ver el listado de locales", locals_index_path %>
+    </p>
+    <p>
         <%= link_to "Sign Out", destroy_admin_session_path, method: :delete %>
     </p>
 <% else %>
+    <p>No estas logeado. Selecciona una opcion:</p>
     <div style="display: flex; width:600px">
         <div style="float: left; width:25%;">
             <p>

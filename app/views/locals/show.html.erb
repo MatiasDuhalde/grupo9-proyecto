@@ -1,0 +1,17 @@
+<p>
+    <strong> Nombre del Local: </strong>
+    <%= @local.nombre %>
+</p>
+<p>
+    <strong> Descripción del Local: </strong>
+    <%= @local.descripcion %>
+</p>
+
+<%= link_to "Volver al listado de Locales", locals_index_path %>
+<br/>
+
+<% if current_admin %>
+    <%= link_to "Editar este local", local_edit_path(@local.id) %>
+    <br/>
+    <%= link_to "Eliminar este local", local_path(@local.id), method: :delete, data: {confirm: "Está seguro?"} %>
+<% end %>
