@@ -1,0 +1,80 @@
+<h1>Página Principal</h1>
+
+<% if current_user %>
+    <p>Aquí podrás encontrar citas</p>
+    <p>
+        <%= link_to "Ver el listado de comunas", comunas_index_path %>
+    </p>
+    <p>
+        <%= link_to "Ver el listado de gustos", gustos_index_path %>
+    </p>
+    <p>
+        <%= link_to "Ver el listado de locales", locals_index_path %>
+    </p>
+    <br/>
+    <% if current_user.imagen.attached? %>
+        <%= image_tag(current_user.imagen) %>
+    <% else%>
+        <p> No tienes imagen de perfil </p>
+    <% end %>
+    <br/>
+    <p>
+        <%= link_to "Edit Account", edit_user_registration_path %>
+    </p>
+    <p>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+    </p>
+<% elsif current_local %>
+    <p> Bienvenido </p>
+    <p> Este es el portal del local <%= current_local.nombre %> </p>
+    <p>
+        <%= link_to "Ver las reviews", reviews_index_path %>
+    </p>
+    <p>
+        <%= link_to "Edit Local", edit_local_registration_path %>
+    </p>
+    <p>
+        <%= link_to "Sign Out", destroy_local_session_path, method: :delete %>
+    </p>
+<% elsif current_admin %>
+    <p> Bienvenido </p>
+    <p> Este es el panel de control del administrador <%= current_admin.email %> </p>
+    <p>
+        <%= link_to "Ver el listado de comunas", comunas_index_path %>
+    </p>
+    <p>
+        <%= link_to "Ver el listado de gustos", gustos_index_path %>
+    </p>
+    <p>
+        <%= link_to "Ver el listado de locales", locals_index_path %>
+    </p>
+    <p>
+        <%= link_to "Sign Out", destroy_admin_session_path, method: :delete %>
+    </p>
+<% else %>
+    <p>No estas logeado. Selecciona una opcion:</p>
+    <div style="display: flex; width:600px">
+        <div style="float: left; width:25%;">
+            <p>
+                <%= link_to "Create Account", new_user_registration_path %>
+            </p>
+            <p>
+                <%= link_to "User Sign In", new_user_session_path %>
+            </p>
+        </div>
+        <div style="float: left; width:25%;">
+            <br/>
+            <p>
+                <%= link_to "Admin Sign In", new_admin_session_path %>
+            </p>
+        </div>
+        <div style="float: right; width:25%;">
+            <p>
+                <%= link_to "Create Local", new_local_registration_path %>
+            </p>
+            <p>
+                <%= link_to "Local Sign In", new_local_session_path %>
+            </p>
+        </div>
+    </div>
+<% end %>

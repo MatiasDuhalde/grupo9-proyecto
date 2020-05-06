@@ -1,0 +1,20 @@
+<h1>Editando review</h1>
+
+<%= form_with(model: @review, method: :patch) do |f| %>
+    <div class="field">
+        <%= f.label :calificacion %>
+        <%= f.text_field :calificacion %>
+    </div>
+
+    <div class="field">
+        <%= f.label :comentario %>
+        <%= f.text_area :comentario %>
+    </div>
+
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+<% end %>
+
+<br/>
+<%= link_to "Volver al listado de reviews", reviews_index_path %>
