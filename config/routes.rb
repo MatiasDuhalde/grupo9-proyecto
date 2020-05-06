@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # CREATE
-  get 'reviews/new', to: 'review#new'
-  post 'reviews', to: 'review#create'
+  get 'reviews/new', to: 'reviews#new'
+  post 'reviews', to: 'reviews#create'
   # READ
   get 'reviews/index'
   get 'reviews/:id', to: 'reviews#show', as: 'review'

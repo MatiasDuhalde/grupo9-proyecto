@@ -97,7 +97,6 @@ ActiveRecord::Schema.define(version: 2020_05_05_081839) do
     t.integer "gusto_id"
     t.string "nombre"
     t.text "descripcion"
-    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
