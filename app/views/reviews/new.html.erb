@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Crear review</h1>
 
 <%= form_with(model: @review, method: :post) do |f| %>
@@ -9,8 +7,8 @@
     </div>
 
     <div class="field">
-        <%= f.label :descripcion %>
-        <%= f.text_area :descripcion %>
+        <%= f.label :comentario %>
+        <%= f.text_area :comentario %>
     </div>
 
     <div class="actions">
@@ -18,4 +16,4 @@
     </div>
 <% end %>
 
-<%= link_to "Volver al listado de comunas", reviews_index_path %>
+<%= link_to "Volver al listado de reviews", reviews_index_path %>

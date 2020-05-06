@@ -38,7 +38,7 @@
     </p>
 <% elsif current_admin %>
     <p> Bienvenido </p>
-    <p> Este es el panel de control del administrador <%= current_admin.nombre %> </p>
+    <p> Este es el panel de control del administrador <%= current_admin.email %> </p>
     <p>
         <%= link_to "Ver el listado de comunas", comunas_index_path %>
     </p>
@@ -63,7 +63,7 @@
             </p>
         </div>
         <div style="float: left; width:25%;">
-            <br>
+            <br/>
             <p>
                 <%= link_to "Admin Sign In", new_admin_session_path %>
             </p>

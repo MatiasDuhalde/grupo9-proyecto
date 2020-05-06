@@ -11,7 +11,7 @@
 <br/>
 
 <% if current_admin %>
-    <%= link_to "Editar esta review", reviews_edit_path(@review.id) %>
+    <%= link_to "Editar esta review", review_edit_path(@review.id) %>
     <br/>
     <%= link_to "Eliminar esta review", review_path(@review.id), method: :delete, data: {confirm: "Está seguro?"} %>
 <% end %>
