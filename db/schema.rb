@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_013509) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "edad"
-    t.integer "telefono"
+    t.string "telefono"
     t.string "nombre"
     t.text "descripcion"
     t.bigint "comuna_id"
