@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_224132) do
+ActiveRecord::Schema.define(version: 2020_05_22_004824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,8 +52,6 @@ ActiveRecord::Schema.define(version: 2020_05_21_224132) do
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_comunas_on_user_id"
   end
 
   create_table "gustos", force: :cascade do |t|
@@ -104,18 +102,18 @@ ActiveRecord::Schema.define(version: 2020_05_21_224132) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "comuna_id"
     t.integer "edad"
     t.integer "telefono"
-    t.integer "gusto_id"
     t.string "nombre"
     t.text "descripcion"
+    t.bigint "comuna_id"
+    t.index ["comuna_id"], name: "index_users_on_comuna_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comunas", "users"
   add_foreign_key "reviews", "locals"
   add_foreign_key "reviews", "users"
+  add_foreign_key "users", "comunas"
 end
