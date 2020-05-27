@@ -62,7 +62,7 @@ class MatchesController < ApplicationController
 
     def management_local_view
 
-        @match_id = params[:match_id]
+        @match_id = params[:id]
         @match = Match.find(@match_id)
 
         @locals = Local.all
@@ -82,9 +82,9 @@ class MatchesController < ApplicationController
             @diccionario = {"local_id" => @local_id, "liker_bool_local" => true}
 
             if @match.update(@diccionario)
-                redirect_to matches_show_especial_path, notice: "Se ha actualizado el local correctamente!"
+                redirect_to match_path(@match_id), notice: "Se ha actualizado el local correctamente!"
             else
-                redirect_to matches_show_especial_path, notice: "Ocurrió un error"
+                redirect_to match_path(@match_id), notice: "Ocurrió un error"
             end
 
         
@@ -93,9 +93,9 @@ class MatchesController < ApplicationController
             @diccionario = {"local_id" => @local_id, "liked_bool_local" => true}
 
             if @match.update(@diccionario)
-                redirect_to matches_show_especial_path, notice: "Se ha actualizado el local correctamente!"
+                redirect_to match_path(@match_id), notice: "Se ha actualizado el local correctamente!"
             else
-                redirect_to matches_show_especial_path, method: :patch, notice: "Ocurrió un error"
+                redirect_to match_path(@match_id), method: :patch, notice: "Ocurrió un error"
             end
 
 
@@ -115,9 +115,9 @@ class MatchesController < ApplicationController
             @diccionario = {"liker_bool_local" => true}
 
             if @match.update(@diccionario)
-                redirect_to matches_show_especial_path, notice: "Se ha actualizado el local correctamente!"
+                redirect_to match_path(@match_id), notice: "Se ha actualizado el local correctamente!"
             else
-                redirect_to matches_show_especial_path, notice: "Ocurrió un error"
+                redirect_to match_path(@match_id), notice: "Ocurrió un error"
             end
 
         
@@ -126,9 +126,9 @@ class MatchesController < ApplicationController
             @diccionario = {"liked_bool_local" => true}
 
             if @match.update(@diccionario)
-                redirect_to matches_show_especial_path, notice: "Se ha actualizado el local correctamente!"
+                redirect_to match_path(@match_id), notice: "Se ha actualizado el local correctamente!"
             else
-                redirect_to matches_show_especial_path, notice: "Ocurrió un error"
+                redirect_to match_path(@match_id), notice: "Ocurrió un error"
             end
 
 
@@ -151,9 +151,9 @@ class MatchesController < ApplicationController
             @diccionario = {"liker_bool_local" => true, "liked_bool_local" => false, "local_id" => @local_id}
 
             if @match.update(@diccionario)
-                redirect_to matches_show_especial_path, notice: "Se ha actualizado el local correctamente!"
+                redirect_to match_path(@match_id), notice: "Se ha actualizado el local correctamente!"
             else
-                redirect_to matches_show_especial_path, notice: "Ocurrió un error"
+                redirect_to match_path(@match_id), notice: "Ocurrió un error"
             end
 
         
@@ -162,9 +162,9 @@ class MatchesController < ApplicationController
             @diccionario = {"liked_bool_local" => true, "liker_bool_local" => false, "local_id" => @local_id}
 
             if @match.update(@diccionario)
-                redirect_to matches_show_especial_path, notice: "Se ha actualizado el local correctamente!"
+                redirect_to match_path(@match_id), notice: "Se ha actualizado el local correctamente!"
             else
-                redirect_to matches_show_especial_path, notice: "Ocurrió un error"
+                redirect_to match_path(@match_id), notice: "Ocurrió un error"
             end
 
 

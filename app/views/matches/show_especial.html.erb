@@ -76,7 +76,7 @@
         <br/>
 
         <br/>
-        <%=  button_to 'Agendar local para la cita', matches_management_local_view_path(:match_id => match.id), method: :patch  %>
+        <%=  button_to 'Agendar local para la cita', match_path(match.id) , method: :get %>
         <br/>
 
         <hr>
@@ -105,7 +105,7 @@
         <br/>
 
         <br/>
-        <%=  button_to 'Agendar local para la cita', matches_management_local_view_path(:match_id => match.id), method: :patch  %>
+        <%=  button_to 'Agendar local para la cita', match_path(match.id) , method: :get %>
         <br/>
 
         <hr>
