@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_013509) do
+ActiveRecord::Schema.define(version: 2020_05_26_222652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,19 @@ ActiveRecord::Schema.define(version: 2020_05_22_013509) do
     t.index ["reset_password_token"], name: "index_locals_on_reset_password_token", unique: true
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.boolean "accept"
+    t.integer "n_rejections"
+    t.boolean "liked_bool_local"
+    t.boolean "liker_bool_local"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "liker_id"
+    t.integer "liked_id"
+    t.bigint "local_id"
+    t.index ["local_id"], name: "index_matches_on_local_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "calificacion"
     t.string "comentario"
@@ -118,4 +131,5 @@ ActiveRecord::Schema.define(version: 2020_05_22_013509) do
   add_foreign_key "reviews", "locals"
   add_foreign_key "reviews", "users"
   add_foreign_key "users", "comunas"
+  add_foreign_key "matches", "locals"
 end

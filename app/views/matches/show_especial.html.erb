@@ -1,0 +1,124 @@
+<h2> Te han llegado las siguientes posibilidades de matches! </h2> 
+
+<% current_user.liked_matches.each do |match| %>
+
+    <% if match.accept != true && match.n_rejections == 0%>
+
+        <p>
+            <strong> Nombre del usuario: </strong>
+            <%= match.liker.nombre %>
+        </p>
+        <p>
+            <strong> Descripción del usuario: </strong>
+            <%= match.liker.descripcion %>
+        </p>
+
+        <p>
+            <strong> Foto del usuario: </strong>
+        </p>
+
+        <% if match.liker.imagen.attached? %>
+            <%= image_tag(match.liker.imagen) %>
+        <% else%>
+            <p> No tiene imagen de perfil </p>
+        <% end %>
+
+        <br/>
+
+        <br/>
+        <%=  button_to 'Corresponder match', matches_update_path(:match_id => match.id, :accept => true), method: :patch  %>
+        <br/>
+
+        <br/>
+        <%=  button_to 'NO quiero hacer match', matches_update_rejections_path(:match_id => match.id, :n_rejections => 1), method: :patch  %>
+        <br/>
+
+        <hr>
+
+    <% else%>
+
+    <% end %>
+
+<% end %>
+
+<br/>
+<hr>
+<br/>
+
+<h2> Has hecho match con los siguientes usuario/s! </h2> 
+
+<% all_matches = Array.new %>
+<% all_matches =  current_user.liked_matches + current_user.liker_matches%>
+
+<% all_matches.each do |match| %>
+
+    <% if match.accept == true && match.liked_id == current_user.id%>
+
+        <p>
+            <strong> Nombre del usuario: </strong>
+            <%= match.liker.nombre %>
+        </p>
+        <p>
+            <strong> Descripción del usuario: </strong>
+            <%= match.liker.descripcion %>
+        </p>
+
+        <p>
+            <strong> Foto del usuario: </strong>
+        </p>
+
+        <% if match.liker.imagen.attached? %>
+            <%= image_tag(match.liker.imagen) %>
+        <% else%>
+            <p> No tiene imagen de perfil </p>
+        <% end %>
+
+        <br/>
+
+        <br/>
+        <%=  button_to 'Agendar local para la cita', match_path(match.id) , method: :get %>
+        <br/>
+
+        <hr>
+
+    <% elsif match.accept == true && match.liker_id == current_user.id%>
+
+        <p>
+            <strong> Nombre del usuario: </strong>
+            <%= match.liked.nombre %>
+        </p>
+        <p>
+            <strong> Descripción del usuario: </strong>
+            <%= match.liked.descripcion %>
+        </p>
+
+        <p>
+            <strong> Foto del usuario: </strong>
+        </p>
+
+        <% if match.liked.imagen.attached? %>
+            <%= image_tag(match.liked.imagen) %>
+        <% else%>
+            <p> No tiene imagen de perfil </p>
+        <% end %>
+
+        <br/>
+
+        <br/>
+        <%=  button_to 'Agendar local para la cita', match_path(match.id) , method: :get %>
+        <br/>
+
+        <hr>
+    
+    <% else %>
+
+    <% end %>
+
+<% end %>
+
+
+
+
+<br/>
+<%= link_to "Volver a la pagina principal", root_path %>
+<br/>

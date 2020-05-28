@@ -4,6 +4,7 @@ class GustosController < ApplicationController
   end
 
   def create
+
     @gusto = Gusto.create(gusto_params)
     if @gusto.save
       redirect_to gustos_index_path, notice: "Gusto fue creada exitosamente"

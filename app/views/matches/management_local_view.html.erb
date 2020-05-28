@@ -1,0 +1,119 @@
+<% if current_user.id == @match.liker_id %>
+    <% user_type = "liker" %>
+<% elsif current_user.id == @match.liked_id %>
+    <% user_type = "liked" %>
+<% end %>
+
+<% puts @match.local %>
+
+<% if @match.local == nil %>
+
+    <h1>Debes seleccionar Local para la cita!</h1>
+
+    <h2>Lista de Locales</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Local</th>
+                <th>Descripción del Local</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @locals.each do |local| %>
+                <tr>
+                    <td> <%= local.nombre %> </td>
+                    <td> <%= local.descripcion %> </td>
+                    <td> <%= link_to "Seleccionar Local", matches_update_local_and_boolean_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %> </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+<% elsif @match.local != nil && (@match.liker_bool_local == false || @match.liked_bool_local == false)%>
+
+    <h1> Tienes el siguiente local seleccionado para la cita: </h1>
+
+    <p>
+        <strong> Nombre del local: </strong>
+        <%= @match.local.nombre %>
+    </p>
+    <p>
+        <strong> Descripción del local: </strong>
+        <%= @match.local.descripcion %>
+    </p>
+
+    <% if user_type == "liker" %>
+
+        <p> Tu actual decisión acerca de este local es: <strong> <%= @match.liker_bool_local %> </strong> </p>
+
+        <% if @match.liker_bool_local == false %>
+
+            <p>Si te gusta el actual local, apreta el boton "Me gusta el local!"</p>
+
+            <br/>
+            <%= button_to 'Me gusta el local!', matches_accept_local_path(:match_id => @match.id, :user_type => user_type), method: :patch %>
+            <br/>
+
+        <% end %>
+
+    <% elsif user_type == "liked" %>
+
+        <p> Tu actual decisión acerca de este local es: <strong> <%= @match.liked_bool_local %> </strong> </p>
+    
+        <% if @match.liked_bool_local == false %>
+
+            <p>Si te gusta el actual local, apreta el boton "Me gusta el local!"</p>
+
+            <br/>
+            <%= button_to 'Me gusta el local!', matches_accept_local_path(:match_id => @match.id, :user_type => user_type), method: :patch %>
+            <br/>
+
+        <% end %>
+
+    <% end %>
+
+    <p> En caso que no te guste el local actual, cambialo a cualquiera de los siguientes locales:</p>
+
+    <h2>Lista de Locales</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Local</th>
+                <th>Descripción del Local</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @locals.each do |local| %>
+                <tr>
+                    <td> <%= local.nombre %> </td>
+                    <td> <%= local.descripcion %> </td>
+                    <td> <%= link_to "Cambiar a este Local", matches_change_local_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %> </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+<% elsif @match.local != nil && @match.liker_bool_local == true && @match.liked_bool_local == true%>
+
+    <h1> El local que quedo establecido para la cita, dado que los dos estaban de acuerdo, es el siguiente: </h1>
+
+    <p>
+        <strong> Nombre del local: </strong>
+        <%= @match.local.nombre %>
+    </p>
+    <p>
+        <strong> Descripción del local: </strong>
+        <%= @match.local.descripcion %>
+    </p>
+
+<% end %>
+
+<br/>
+<%= link_to "Volver a la pagina de gestion de tus matches", matches_show_especial_path %>
+<br/>
