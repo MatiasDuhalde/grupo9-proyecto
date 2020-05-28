@@ -71,7 +71,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_222652) do
     t.datetime "updated_at", null: false
     t.string "nombre"
     t.string "descripcion"
-    t.integer "comuna_id"
+    t.bigint "comuna_id"
+    t.index ["comuna_id"], name: "index_locals_on_comuna_id"
     t.index ["email"], name: "index_locals_on_email", unique: true
     t.index ["reset_password_token"], name: "index_locals_on_reset_password_token", unique: true
   end
@@ -94,6 +95,17 @@ ActiveRecord::Schema.define(version: 2020_05_26_222652) do
     t.string "comentario"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "local_id"
+    t.bigint "user_id"
+    t.index ["local_id"], name: "index_reviews_on_local_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "user_gustos", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "gusto_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -104,16 +116,20 @@ ActiveRecord::Schema.define(version: 2020_05_26_222652) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "comuna_id"
     t.integer "edad"
-    t.integer "telefono"
-    t.integer "gusto_id"
+    t.string "telefono"
     t.string "nombre"
     t.text "descripcion"
+    t.bigint "comuna_id"
+    t.index ["comuna_id"], name: "index_users_on_comuna_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "locals", "comunas"
+  add_foreign_key "reviews", "locals"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "users", "comunas"
   add_foreign_key "matches", "locals"
 end
