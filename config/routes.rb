@@ -58,14 +58,11 @@ Rails.application.routes.draw do
   # READ
   get 'matches/show_especial', to: 'matches#show_especial'
   get 'matches/:id', to: 'matches#management_local_view', as: 'match'
-  #UPDATE
+  # UPDATE
   patch 'matches/update', to: 'matches#update'
   patch 'matches/update_rejections', to: 'matches#update_rejections'
-  #patch 'matches/management_local_view', to: 'matches#management_local_view'
+  # patch 'matches/management_local_view', to: 'matches#management_local_view'
   patch 'matches/update_local_and_boolean', to: 'matches#update_local_and_boolean'
   patch 'matches/accept_local', to: 'matches#accept_local'
   patch 'matches/change_local', to: 'matches#change_local'
-
-
-
 end
