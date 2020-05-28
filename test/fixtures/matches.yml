@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accept: false
+  possible_local_id: 1
+  liked_bool_local: false
+  liker_bool_local: false
+
+two:
+  accept: false
+  possible_local_id: 1
+  liked_bool_local: false
+  liker_bool_local: false

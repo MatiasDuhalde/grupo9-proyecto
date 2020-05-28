@@ -11,12 +11,19 @@
     <p>
         <%= link_to "Ver el listado de locales", locals_index_path %>
     </p>
+    <p>
+        <%= link_to "Ver el listado de usuarios", users_index_path %>
+    </p>    
+    <p>
+        <%= link_to "Ver tus posibles matches y matches", matches_show_especial_path %>
+    </p>  
     <br/>
     <% if current_user.imagen.attached? %>
         <%= image_tag(current_user.imagen) %>
     <% else%>
         <p> No tienes imagen de perfil </p>
     <% end %>
+
     <br/>
     <p>
         <%= link_to "Edit Account", edit_user_registration_path %>
