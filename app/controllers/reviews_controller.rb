@@ -6,9 +6,10 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.create(review_params)
     if @review.save
-      redirect_to reviews_new_path, notice: 'Review creada exitosamente.'
+      redirect_to local_path(review_params[:local_id]), notice: 'Review creada exitosamente.'
     else
-      redirect_to reviews_new_path, notice: 'Ocurrió un error al crear la película.'
+      redirect_to local_path(review_params[:local_id]),
+                  notice: 'Ocurrió un error al crear la review.'
     end
   end
 
@@ -42,6 +43,10 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:calificacion, :comentario)
+    params.require(
+      :review
+    ).permit(
+      :calificacion, :comentario, :user_id, :local_id
+    )
   end
 end

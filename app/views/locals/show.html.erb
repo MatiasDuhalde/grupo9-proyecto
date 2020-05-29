@@ -17,7 +17,7 @@
 <br>
 
 <% if current_user %>
-  <%= link_to "Crear nueva review", reviews_new_path %>
+  <%= link_to "Crear nueva review", reviews_new_path(local_id: @local.id) %>
 <% end %>
 <br>
 
