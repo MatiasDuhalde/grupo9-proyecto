@@ -22,7 +22,7 @@
 <%= link_to "Volver al listado de reviews", reviews_index_path %>
 <br/>
 
-<% if current_admin || current_user.id == @review.user.id %>
+<% if current_admin || (current_user && current_user.id == @review.user.id) %>
   <%= link_to "Editar esta review", review_edit_path(@review.id) %>
   <br/>
   <%= link_to "Eliminar esta review", review_path(@review.id), method: :delete, data: {confirm: "Está seguro?"} %>
