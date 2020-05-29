@@ -6,6 +6,7 @@
       <th>Nombre del Local</th>
       <th>Comuna</th>
       <th>Descripción del Local</th>
+      <th>Calificación</th>
       <th>Acciones</th>
     </tr>
   </thead>
@@ -16,6 +17,8 @@
         <td> <%= local.nombre %> </td>
         <td> <%= local.comuna.nombre %> </td>
         <td> <%= local.descripcion %> </td>
+        <% promedio = get_promedio_local(local) %>
+        <td> <%= promedio != 0 ? promedio : "Sin reviews" %> </td>
         <td> <%= link_to "Ver detalles", local_path(local.id) %> </td>
       </tr>
     <% end %>

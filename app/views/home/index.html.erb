@@ -38,7 +38,7 @@
   <p> Bienvenido </p>
   <p> Este es el portal del local <%= current_local.nombre %> </p>
   <p>
-    <%= link_to "Ver las reviews", reviews_index_path %>
+    <%= link_to "Ver las reviews", reviews_index_path(local_id: current_local.id) %>
   </p>
   <p>
     <%= link_to "Editar Local", edit_local_registration_path %>
@@ -57,6 +57,9 @@
   </p>
   <p>
     <%= link_to "Ver el listado de locales", locals_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de reviews", reviews_index_path %>
   </p>
   <p>
     <%= link_to "Cerrar Sesión", destroy_admin_session_path, method: :delete %>

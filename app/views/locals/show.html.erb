@@ -9,6 +9,11 @@
 </p>
 
 <p>
+  <strong> Promedio: </strong>
+  <%= @promedio != 0 ? @promedio : "Este local no tiene reviews" %>
+</p>
+
+<p>
   <strong> Descripción del Local: </strong>
   <%= @local.descripcion %>
 </p>
