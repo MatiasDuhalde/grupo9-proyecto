@@ -15,6 +15,9 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all
+    if params[:local_id]
+      @local = Local.find(params[:local_id].to_i)
+    end
   end
 
   def show

@@ -13,6 +13,9 @@
   <%= @local.descripcion %>
 </p>
 
+<%= link_to "Ver reviews de este local", reviews_index_path(local_id: @local.id) %>
+<br>
+
 <%= link_to "Volver al listado de Locales", locals_index_path %>
 <br>
 

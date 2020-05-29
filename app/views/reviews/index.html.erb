@@ -1,7 +1,31 @@
 <h1>Reviews</h1>
 
-<% if current_admin %>
+<% if params[:local_id] %>
+<p>Estas son las reviews del local <%= @local.nombre %>:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Autor</th>
+    <th>Calificación</th>
+    <th>Comentario</th>
+    <th>Fecha</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
 
+  <tbody>
+  <% @local.reviews.order(:created_at).each do |review| %>
+    <tr>
+    <td> <%= review.user.nombre %> </td>
+    <td> <%= review.calificacion %> </td>
+    <td> <%= review.comentario %> </td>
+    <td> <%= review.created_at %> </td>
+    <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% elsif current_admin %>
 <table>
   <thead>
   <tr>
@@ -45,32 +69,6 @@
   <% current_user.reviews.order(:created_at).each do |review| %>
     <tr>
     <td> <%= review.local.nombre %> </td>
-    <td> <%= review.calificacion %> </td>
-    <td> <%= review.comentario %> </td>
-    <td> <%= review.created_at %> </td>
-    <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<% elsif current_local %>
-<p>Estas son las reviews de tu local:</p>
-<table>
-  <thead>
-  <tr>
-    <th>Autor</th>
-    <th>Calificación</th>
-    <th>Comentario</th>
-    <th>Fecha</th>
-    <th>Acciones</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% current_local.reviews.order(:created_at).each do |review| %>
-    <tr>
-    <td> <%= review.user.nombre %> </td>
     <td> <%= review.calificacion %> </td>
     <td> <%= review.comentario %> </td>
     <td> <%= review.created_at %> </td>
