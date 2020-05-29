@@ -1,29 +1,90 @@
 <h1>Reviews</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Calificación</th>
-            <th>Comentario</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+<% if current_admin %>
 
-    <tbody>
-        <% @reviews.each do |review| %>
-            <tr>
-                <td> <%= review.calificacion %> </td>
-                <td> <%= review.comentario %> </td>
-                <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
-            </tr>
-        <% end %>
-    </tbody>
+<table>
+  <thead>
+  <tr>
+    <th>Local</th>
+    <th>Autor</th>
+    <th>Calificación</th>
+    <th>Comentario</th>
+    <th>Fecha</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @reviews.each do |review| %>
+    <tr>
+    <td> <%= review.local.nombre %> </td>
+    <td> <%= review.user.nombre %> </td>
+    <td> <%= review.calificacion %> </td>
+    <td> <%= review.comentario %> </td>
+    <td> <%= review.created_at %> </td>
+    <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
-<br/>
+<% elsif current_user %>
+<p>Estas son las reviews que has escrito:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Local</th>
+    <th>Calificación</th>
+    <th>Comentario</th>
+    <th>Fecha</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% current_user.reviews.order(:created_at).each do |review| %>
+    <tr>
+    <td> <%= review.local.nombre %> </td>
+    <td> <%= review.calificacion %> </td>
+    <td> <%= review.comentario %> </td>
+    <td> <%= review.created_at %> </td>
+    <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<% elsif current_local %>
+<p>Estas son las reviews de tu local:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Autor</th>
+    <th>Calificación</th>
+    <th>Comentario</th>
+    <th>Fecha</th>
+    <th>Acciones</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% current_local.reviews.order(:created_at).each do |review| %>
+    <tr>
+    <td> <%= review.user.nombre %> </td>
+    <td> <%= review.calificacion %> </td>
+    <td> <%= review.comentario %> </td>
+    <td> <%= review.created_at %> </td>
+    <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<br>
 <%= link_to "Volver a la página principal", root_path %>
-<br/>
+<br>
 
 <% if current_admin %>
-    <%= link_to "Crear nueva review", reviews_new_path %>
+  <%= link_to "Crear nueva review", reviews_new_path %>
 <% end %>
