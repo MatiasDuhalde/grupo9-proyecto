@@ -8,6 +8,7 @@
     <%= render "home/defaulthome" %>
 <% end %>
 
+<% if current_user %>
   <p>Aquí podrás encontrar citas</p>
   <p>
     <%= link_to "Ver el listado de comunas", comunas_index_path %>
