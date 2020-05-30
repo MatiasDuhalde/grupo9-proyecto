@@ -1,26 +1,26 @@
 <p>
-    <strong> Nombre del usuario: </strong>
-    <%= @user.nombre %>
+  <strong> Nombre del usuario: </strong>
+  <%= @user.nombre %>
 </p>
 <p>
-    <strong> Descripción del usuario: </strong>
-    <%= @user.descripcion %>
+  <strong> Descripción del usuario: </strong>
+  <%= @user.descripcion %>
 </p>
 
 <p>
-    <strong> Foto del usuario: </strong>
+  <strong> Foto del usuario: </strong>
 </p>
 
 <% if @user.imagen.attached? %>
-    <%= image_tag(@user.imagen) %>
+  <%= image_tag(@user.imagen) %>
 <% else%>
-    <p> No tiene imagen de perfil </p>
+  <p> No tiene imagen de perfil </p>
 <% end %>
 
 <br/>
 
 <%= button_to 'Hacer match', matches_path(:liker_id => current_user.id, :liked_id => @user.id, :accept => false,
-                                        :n_rejections => 0, :liked_bool_local => false, :liker_bool_local => false), method: :post %>
+                    :n_rejections => 0, :liked_bool_local => false, :liker_bool_local => false), method: :post %>
 
 
 

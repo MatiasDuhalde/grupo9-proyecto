@@ -1,20 +1,34 @@
 <p>
-    <strong> Nombre del Local: </strong>
-    <%= @local.nombre %>
+  <strong> Nombre del Local: </strong>
+  <%= @local.nombre %>
 </p>
+
 <p>
-    <strong> Descripción del Local: </strong>
-    <%= @local.descripcion %>
+  <strong> Comuna: </strong>
+  <%= @local.comuna.nombre %>
 </p>
+
+<p>
+  <strong> Promedio: </strong>
+  <%= @promedio != 0 ? @promedio : "Este local no tiene reviews" %>
+</p>
+
+<p>
+  <strong> Descripción del Local: </strong>
+  <%= @local.descripcion %>
+</p>
+
+<%= link_to "Ver reviews de este local", reviews_index_path(local_id: @local.id) %>
+<br>
 
 <%= link_to "Volver al listado de Locales", locals_index_path %>
-<br/>
+<br>
 
-<% if current_user || current_user %>
-    <%= link_to "Crear nueva review", reviews_new_path %>
+<% if current_user %>
+  <%= link_to "Crear nueva review", reviews_new_path(local_id: @local.id) %>
 <% end %>
-<br/>
+<br>
 
 <% if current_admin %>
-    <%= link_to "Eliminar este local", local_path(@local.id), method: :delete, data: {confirm: "Está seguro?"} %>
+  <%= link_to "Eliminar este local", local_path(@local.id), method: :delete, data: {confirm: "Está seguro?"} %>
 <% end %>

@@ -7,3 +7,94 @@
 <% else %>
     <%= render "home/defaulthome" %>
 <% end %>
+
+  <p>Aquí podrás encontrar citas</p>
+  <p>
+    <%= link_to "Ver el listado de comunas", comunas_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de gustos", gustos_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de locales", locals_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de usuarios", users_index_path %>
+  </p>  
+  <p>
+    <%= link_to "Ver tus posibles matches y matches", matches_show_especial_path %>
+  </p>
+  <p>
+    <%= link_to "Ver historial de reviews", reviews_index_path %>
+  </p>
+  <br>
+  <% if current_user.imagen.attached? %>
+    <%= image_tag(current_user.imagen) %>
+  <% else%>
+    <p> No tienes imagen de perfil </p>
+  <% end %>
+
+  <br>
+  <p>
+    <%= link_to "Editar Cuenta", edit_user_registration_path %>
+  </p>
+  <p>
+    <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+  </p>
+<% elsif current_local %>
+  <p> Bienvenido </p>
+  <p> Este es el portal del local <%= current_local.nombre %> </p>
+  <p>
+    <%= link_to "Ver las reviews", reviews_index_path(local_id: current_local.id) %>
+  </p>
+  <p>
+    <%= link_to "Editar Local", edit_local_registration_path %>
+  </p>
+  <p>
+    <%= link_to "Cerrar Sesión", destroy_local_session_path, method: :delete %>
+  </p>
+<% elsif current_admin %>
+  <p> Bienvenido </p>
+  <p> Este es el panel de control del administrador <%= current_admin.email %> </p>
+  <p>
+    <%= link_to "Ver el listado de comunas", comunas_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de gustos", gustos_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de locales", locals_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de reviews", reviews_index_path %>
+  </p>
+  <p>
+    <%= link_to "Cerrar Sesión", destroy_admin_session_path, method: :delete %>
+  </p>
+<% else %>
+  <p>No estas logeado. Selecciona una opcion:</p>
+  <div style="display: flex; width:800px">
+    <div style="float: left; width:25%;">
+      <p>
+        <%= link_to "Crear Usuario", new_user_registration_path %>
+      </p>
+      <p>
+        <%= link_to "Iniciar Sesión (Usuario)", new_user_session_path %>
+      </p>
+    </div>
+    <div style="float: left; width:25%;">
+      <br>
+      <p>
+        <%= link_to "Iniciar Sesión (Admin)", new_admin_session_path %>
+      </p>
+    </div>
+    <div style="float: right; width:25%;">
+      <p>
+        <%= link_to "Crear Local", new_local_registration_path %>
+      </p>
+      <p>
+        <%= link_to "Iniciar Sesión (Local)", new_local_session_path %>
+      </p>
+    </div>
+  </div>
+<% end %>
