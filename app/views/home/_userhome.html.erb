@@ -1,6 +1,6 @@
 <section id="user_img" class="hero is-fullheight">
   <div class="hero-body">
-    <div class="container">
+    <div id="centrado" class="container">
         <h1 class="title has-text-white">
         Aquí podrás encontrar tu cita ideal.
         </h1>
@@ -9,6 +9,36 @@
         </button>
         <button id="buttonuser" class="button has-text-black is-large">
             <%= link_to "Ver tus posibles matches y matches", matches_show_especial_path, class:"has-text-black" %>
+        </button>
+    </div>
+  </div>
+</section>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+        <div class="tile is-ancestor">
+          <div class="tile is-4 is-vertical is-parent">
+            <div class="tile is-child box">
+                <% if current_user.imagen.attached? %>
+                    <p class="image is-4by3">
+                        <%= current_user.imagen%>
+                    </p>
+                <% else%>
+                    <p class="image is-4by3">
+                        <img src="https://bulma.io/images/placeholders/640x480.png">
+                    </p>
+                <% end %>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title"><%= current_user.nombre%></p>
+              <p><%=current_user.descripcion%>Relleno. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam magna lacus, maximus vel risus eget, fermentum pulvinar risus. Fusce vehicula efficitur commodo. Etiam quis lorem facilisis, auctor diam at, tristique lectus. Integer congue purus ipsum. Quisque pulvinar, mauris vitae euismod ultricies, turpis felis eleifend tortor, at ornare metus ipsum nec nulla. Ut lacinia lacinia libero, et ultrices libero pharetra a. Vestibulum nec erat vel erat egestas suscipit. Aenean a nunc ornare, ullamcorper diam quis, tempus odio. Etiam dictum tincidunt sollicitudin. Suspendisse condimentum eget dolor in volutpat. Vivamus id nibh eros. Donec tincidunt nunc vitae felis sagittis, ut ornare eros scelerisque. Integer eget arcu lectus. Ut varius pellentesque ante, sed porttitor velit tristique non.</p>
+            </div>
+          </div>
+        </div>
+        <button id="buttonuser" class="button has-text-black is-large">
+            <%= link_to "Ver historial de reviews", reviews_index_path, class:"has-text-black" %>
         </button>
     </div>
   </div>

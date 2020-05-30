@@ -19,14 +19,15 @@
                             <div class="content">
                               <p>
                                 <h1 class="subtitle is-5 has-text-black"><%= local.nombre %></h1>
-                                <br>
                                 <%= local.descripcion %>
                               </p>
                             </div>
                             <nav class="level is-mobile">
                               <div class="level-left">
                                 <a class="level-item">
-                                  <%= link_to "Seleccionar Local", matches_update_local_and_boolean_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %> 
+                                    <button class="button">
+                                        <%= link_to "Seleccionar Local", matches_update_local_and_boolean_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %> 
+                                    </button>
                                 </a>
                               </div>
                             </nav>
@@ -50,7 +51,7 @@
                 <h1 class="title is-1 has-text-black"> Local seleccionado: <%= @match.local.nombre %></h1>
 
                 <p>
-                    <%= @match.local.descripcion %> Relleno. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam magna lacus, maximus vel risus eget, fermentum pulvinar risus. Fusce vehicula efficitur commodo. Etiam quis lorem facilisis, auctor diam at, tristique lectus. Integer congue purus ipsum. Quisque pulvinar, mauris vitae euismod ultricies, turpis felis eleifend tortor, at ornare metus ipsum nec nulla. Ut lacinia lacinia libero, et ultrices libero pharetra a. Vestibulum nec erat vel erat egestas suscipit. Aenean a nunc ornare, ullamcorper diam quis, tempus odio. Etiam dictum tincidunt sollicitudin. Suspendisse condimentum eget dolor in volutpat. Vivamus id nibh eros. Donec tincidunt nunc vitae felis sagittis, ut ornare eros scelerisque. Integer eget arcu lectus. Ut varius pellentesque ante, sed porttitor velit tristique non.
+                    <%= @match.local.descripcion %>.
                 </p>
 
                 <hr>
@@ -97,13 +98,15 @@
                             <div class="content">
                               <p>
                                 <h1 class="subtitle is-5 has-text-black"><%= local.nombre %></h1>
-                                <%= local.descripcion %>Curabitur sapien felis, feugiat sed porta at, tristique sed augue. Vestibulum at lacinia tortor. Donec auctor convallis metus, eu efficitur lectus molestie id. Nunc ut neque vel lorem lobortis varius non in massa. Donec molestie commodo efficitur. Fusce mattis dolor ac viverra tincidunt. Aenean at venenatis tortor. 
+                                <%= local.descripcion %>
                               </p>
                             </div>
                             <nav class="level is-mobile">
                               <div class="level-left">
                                 <a class="level-item">
-                                  <%= link_to "Cambiar a este Local", matches_change_local_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %>
+                                    <button class="button">
+                                        <%= link_to "Cambiar a este Local", matches_change_local_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %>
+                                    </button>
                                 </a>
                               </div>
                             </nav>

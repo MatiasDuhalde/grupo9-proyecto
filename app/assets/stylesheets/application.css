@@ -22,6 +22,10 @@
 	opacity: 1.0;
 }
 
+#centrado{
+	text-align: center;
+}
+
 #buttonuser{
 	opacity: 0.5;
 }

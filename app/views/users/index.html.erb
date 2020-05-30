@@ -8,9 +8,12 @@
   <% likers_id.push(match.liker_id) %>
 <% end %>
 
-<section id="user_index_img" class="hero is-primary is-fullheight">
+<section id="user_index_img" class="hero is-fullheight">
   <div class="hero-body">
-    <div class="container">
+    <div id="centrado" class="container">
+        <h1 class="title has-text-black">
+        Usuari@s Disponibles
+        </h1>
         <div class="box">
             <% @users.each do |user| %>
                 <% if user.id != current_user.id && !likeds_id.include?(user.id) && !likers_id.include?(user.id)%>
