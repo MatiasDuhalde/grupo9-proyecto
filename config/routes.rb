@@ -65,4 +65,9 @@ Rails.application.routes.draw do
   patch 'matches/update_local_and_boolean', to: 'matches#update_local_and_boolean'
   patch 'matches/accept_local', to: 'matches#accept_local'
   patch 'matches/change_local', to: 'matches#change_local'
+  # ------------------------------------------------------------------------------------------------
+  # CREATE
+  post 'add_gusto', to: 'users#add_gusto'
+  # DELETE
+  delete 'remove_gusto', to: 'users#remove_gusto'
 end
