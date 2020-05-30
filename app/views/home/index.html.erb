@@ -1,6 +1,13 @@
-<h1>Página Principal</h1>
-
 <% if current_user %>
+    <%= render "home/userhome" %>
+<% elsif current_local %>
+    <%= render "home/localhome" %>
+<% elsif current_admin %>
+    <%= render "home/adminhome" %>
+<% else %>
+    <%= render "home/defaulthome" %>
+<% end %>
+
   <p>Aquí podrás encontrar citas</p>
   <p>
     <%= link_to "Ver el listado de comunas", comunas_index_path %>

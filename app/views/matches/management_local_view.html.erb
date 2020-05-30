@@ -8,112 +8,135 @@
 
 <% if @match.local == nil %>
 
-    <h1>Debes seleccionar Local para la cita!</h1>
-
-    <h2>Lista de Locales</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre del Local</th>
-                <th>Descripción del Local</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <% @locals.each do |local| %>
-                <tr>
-                    <td> <%= local.nombre %> </td>
-                    <td> <%= local.descripcion %> </td>
-                    <td> <%= link_to "Seleccionar Local", matches_update_local_and_boolean_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %> </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+    <section id="match_img_2" class="hero is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+            <div class="box">
+                <h1 class="title has-text-black">Debes seleccionar Local para la cita!</h1>
+                <% @locals.each do |local| %>
+                        <article class="media">
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <h1 class="subtitle is-5 has-text-black"><%= local.nombre %></h1>
+                                <br>
+                                <%= local.descripcion %>
+                              </p>
+                            </div>
+                            <nav class="level is-mobile">
+                              <div class="level-left">
+                                <a class="level-item">
+                                  <%= link_to "Seleccionar Local", matches_update_local_and_boolean_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %> 
+                                </a>
+                              </div>
+                            </nav>
+                          </div>
+                        </article>
+                <% end %> 
+            </div>
+            <button id="buttonuser" class="button">
+                <%= link_to "Volver a la pagina de gestion de tus matches", matches_show_especial_path %>
+            </button>
+        </div>
+      </div>
+    </section>
 
 <% elsif @match.local != nil && (@match.liker_bool_local == false || @match.liked_bool_local == false)%>
 
-    <h1> Tienes el siguiente local seleccionado para la cita: </h1>
+    <section id="match_img_2" class="hero is-primary is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+            <div class="box">
+                <h1 class="title is-1 has-text-black"> Local seleccionado: <%= @match.local.nombre %></h1>
 
-    <p>
-        <strong> Nombre del local: </strong>
-        <%= @match.local.nombre %>
-    </p>
-    <p>
-        <strong> Descripción del local: </strong>
-        <%= @match.local.descripcion %>
-    </p>
+                <p>
+                    <%= @match.local.descripcion %> Relleno. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam magna lacus, maximus vel risus eget, fermentum pulvinar risus. Fusce vehicula efficitur commodo. Etiam quis lorem facilisis, auctor diam at, tristique lectus. Integer congue purus ipsum. Quisque pulvinar, mauris vitae euismod ultricies, turpis felis eleifend tortor, at ornare metus ipsum nec nulla. Ut lacinia lacinia libero, et ultrices libero pharetra a. Vestibulum nec erat vel erat egestas suscipit. Aenean a nunc ornare, ullamcorper diam quis, tempus odio. Etiam dictum tincidunt sollicitudin. Suspendisse condimentum eget dolor in volutpat. Vivamus id nibh eros. Donec tincidunt nunc vitae felis sagittis, ut ornare eros scelerisque. Integer eget arcu lectus. Ut varius pellentesque ante, sed porttitor velit tristique non.
+                </p>
 
-    <% if user_type == "liker" %>
+                <hr>
 
-        <p> Tu actual decisión acerca de este local es: <strong> <%= @match.liker_bool_local %> </strong> </p>
+                <% if user_type == "liker" %>
 
-        <% if @match.liker_bool_local == false %>
 
-            <p>Si te gusta el actual local, apreta el boton "Me gusta el local!"</p>
+                    <% if @match.liker_bool_local == false %>
 
-            <br/>
-            <%= button_to 'Me gusta el local!', matches_accept_local_path(:match_id => @match.id, :user_type => user_type), method: :patch %>
-            <br/>
+                        <p class="subtitle has-text-black">Si te gusta el actual local, apreta el boton "Me gusta el local! O puedes seleccionar el que mas te guste en
+                        la parte inferior"</p>
 
-        <% end %>
+                        <br/>
+                        <%= button_to 'Me gusta el local!', matches_accept_local_path(:match_id => @match.id, :user_type => user_type), method: :patch, class:"button" %>
+                        <br/>
+                    <% else %>
 
-    <% elsif user_type == "liked" %>
+                        <p class="subtitle has-text-black">Estas de acuerdo con el local selecionado!</p>
 
-        <p> Tu actual decisión acerca de este local es: <strong> <%= @match.liked_bool_local %> </strong> </p>
-    
-        <% if @match.liked_bool_local == false %>
+                    <% end %>
 
-            <p>Si te gusta el actual local, apreta el boton "Me gusta el local!"</p>
+                <% elsif user_type == "liked" %>
+                
+                    <% if @match.liked_bool_local == false %>
 
-            <br/>
-            <%= button_to 'Me gusta el local!', matches_accept_local_path(:match_id => @match.id, :user_type => user_type), method: :patch %>
-            <br/>
+                        <p class="subtitle has-text-black">Si te gusta el actual local, apreta el boton "Me gusta el local!"</p>
 
-        <% end %>
+                        <br/>
+                        <%= button_to 'Me gusta el local!', matches_accept_local_path(:match_id => @match.id, :user_type => user_type), method: :patch, class:"button"  %>
+                        <br/>
 
-    <% end %>
+                    <% else %>
 
-    <p> En caso que no te guste el local actual, cambialo a cualquiera de los siguientes locales:</p>
+                        <p class="subtitle has-text-black">Estas de acuerdo con el local selecionado!</p>
 
-    <h2>Lista de Locales</h2>
+                    <% end %>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre del Local</th>
-                <th>Descripción del Local</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <% @locals.each do |local| %>
-                <tr>
-                    <td> <%= local.nombre %> </td>
-                    <td> <%= local.descripcion %> </td>
-                    <td> <%= link_to "Cambiar a este Local", matches_change_local_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %> </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+                <% end %>
+            </div>
+            <div class="box">
+                <% @locals.each do |local| %>
+                        <article class="media">
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <h1 class="subtitle is-5 has-text-black"><%= local.nombre %></h1>
+                                <%= local.descripcion %>Curabitur sapien felis, feugiat sed porta at, tristique sed augue. Vestibulum at lacinia tortor. Donec auctor convallis metus, eu efficitur lectus molestie id. Nunc ut neque vel lorem lobortis varius non in massa. Donec molestie commodo efficitur. Fusce mattis dolor ac viverra tincidunt. Aenean at venenatis tortor. 
+                              </p>
+                            </div>
+                            <nav class="level is-mobile">
+                              <div class="level-left">
+                                <a class="level-item">
+                                  <%= link_to "Cambiar a este Local", matches_change_local_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %>
+                                </a>
+                              </div>
+                            </nav>
+                          </div>
+                        </article>
+                <% end %> 
+            </div>
+            <button id="buttonuser" class="button">
+                <%= link_to "Volver a la pagina de gestion de tus matches", matches_show_especial_path %>
+            </button>
+        </div>
+      </div>
+    </section>         
 
 <% elsif @match.local != nil && @match.liker_bool_local == true && @match.liked_bool_local == true%>
 
-    <h1> El local que quedo establecido para la cita, dado que los dos estaban de acuerdo, es el siguiente: </h1>
+    <section id="match_img_2" class="hero is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+            <div class="box">
+                <h1 class="title"> Todo listo! Mucha suerte en tu cita! </h1>
 
-    <p>
-        <strong> Nombre del local: </strong>
-        <%= @match.local.nombre %>
-    </p>
-    <p>
-        <strong> Descripción del local: </strong>
-        <%= @match.local.descripcion %>
-    </p>
+                <p>
+                    <strong> Local Seleccionado: </strong>
+                    <%= @match.local.nombre %>
+                </p>
+                <p>
+                    <strong> Descripción del local: </strong>
+                    <%= @match.local.descripcion %>Curabitur sapien felis, feugiat sed porta at, tristique sed augue. Vestibulum at lacinia tortor. Donec auctor convallis metus, eu efficitur lectus molestie id. Nunc ut neque vel lorem lobortis varius non in massa. Donec molestie commodo efficitur. Fusce mattis dolor ac viverra tincidunt. Aenean at venenatis tortor. 
+                </p>
+            </div>
+        </div>
+      </div>
+    </section>
 
 <% end %>
-
-<br/>
-<%= link_to "Volver a la pagina de gestion de tus matches", matches_show_especial_path %>
-<br/>

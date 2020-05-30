@@ -13,3 +13,45 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar{
+	opacity: 0.5;
+}
+
+.navbar:hover{
+	opacity: 1.0;
+}
+
+#buttonuser{
+	opacity: 0.5;
+}
+
+#buttonuser:hover{
+	opacity: 1.0;
+}
+
+
+#default_img{
+ 	background-image: url(https://images.unsplash.com/reserve/Af0sF2OS5S5gatqrKzVP_Silhoutte.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+ 	background-size: cover;
+}
+
+#user_img{
+ 	background-image: url(https://images.unsplash.com/photo-1513279922550-250c2129b13a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+ 	background-size: cover;
+}
+
+#user_index_img{
+ 	background-image: url(https://images.unsplash.com/photo-1505150099521-fde7970bcc3a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+ 	background-size: cover;
+}
+
+#match_img{
+ 	background-image: url(https://images.pexels.com/photos/1824684/pexels-photo-1824684.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+ 	background-size: cover;
+}
+
+#match_img_2{
+ 	background-image: url(https://images.unsplash.com/photo-1474401639975-278ecfd1b421?ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80);
+ 	background-size: cover;
+}

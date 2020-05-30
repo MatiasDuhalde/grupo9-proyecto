@@ -8,6 +8,52 @@
   <% likers_id.push(match.liker_id) %>
 <% end %>
 
+<section id="user_index_img" class="hero is-primary is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+        <div class="box">
+            <% @users.each do |user| %>
+                <% if user.id != current_user.id && !likeds_id.include?(user.id) && !likers_id.include?(user.id)%>
+                    <article class="media">
+                      <figure class="media-left">
+                        <% if user.imagen.attached? %>
+                            <p class="image is-64x64">
+                                <%= user.imagen%>
+                            </p>
+                        <% else%>
+                            <p class="image is-64x64">
+                                <img src="https://bulma.io/images/placeholders/128x128.png">
+                            </p>
+                        <% end %>
+                      </figure>
+                      <div class="media-content">
+                        <div class="content">
+                          <p>
+                            <strong><%= user.nombre %></strong> <small><%user.email%></small>
+                            <br>
+                            <%= user.descripcion %>
+                          </p>
+                        </div>
+                        <nav class="level is-mobile">
+                          <div class="level-left">
+                            <a class="level-item">
+                              <%= link_to "Ver detalles", user_path(user.id) %>
+                            </a>
+                          </div>
+                        </nav>
+                      </div>
+                    </article>
+                <% else %>
+                <% end %>
+            <% end %> 
+        </div>
+        <button id="buttonuser" class="button">
+            <%= link_to "Volver a la pagina principal", root_path %>
+        </button> 
+    </div>
+  </div>
+</section>
+
 
 <h1>Lista de usuarios</h1>
 
