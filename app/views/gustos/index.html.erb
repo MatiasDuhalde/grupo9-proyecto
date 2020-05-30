@@ -1,29 +1,85 @@
-<h1>Lista de Gustos</h1>
-
+<% if current_user %>
+<h1>Tus gustos</h1>
 <table>
-    <thead>
-        <tr>
-            <th>Nombre del Gusto</th>
-            <th>Descripción del gusto</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th>Nombre del Gusto</th>
+      <th>Descripción del gusto</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
 
-    <tbody>
-        <% @gustos.each do |gusto| %>
-            <tr>
-                <td> <%= gusto.nombre %> </td>
-                <td> <%= gusto.descripcion %> </td>
-                <td> <%= link_to "Ver detalles", gusto_path(gusto.id) %> </td>
-            </tr>
-        <% end %>
-    </tbody>
+  <tbody>
+    <% current_user.gustos.each do |gusto| %>
+      <tr>
+        <td> <%= gusto.nombre %> </td>
+        <td> <%= gusto.descripcion %> </td>
+        <td>
+          <%= button_to 'Quitar gusto', remove_gusto_path(user_id: current_user.id, gusto_id: gusto.id), method: :delete %>
+          <%= link_to "Ver detalles", gusto_path(gusto.id) %><br>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+
+<h1>Lista de gustos</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre del Gusto</th>
+      <th>Descripción del gusto</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gustos.each do |gusto| %>
+      <tr>
+        <td> <%= gusto.nombre %> </td>
+        <td> <%= gusto.descripcion %> </td>
+        <td>
+          <%= button_to 'Agregar gusto', add_gusto_path(user_id: current_user.id, gusto_id: gusto.id), method: :post %>
+          <%= link_to "Ver detalles", gusto_path(gusto.id) %><br>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+
+<h1>Lista de Gustos</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre del Gusto</th>
+      <th>Descripción del gusto</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gustos.each do |gusto| %>
+      <tr>
+        <td> <%= gusto.nombre %> </td>
+        <td> <%= gusto.descripcion %> </td>
+        <td>
+          <% if current_user %>
+            <%= button_to 'Agregar gusto', add_gusto_path(user_id: current_user.id, gusto_id: gusto.id), method: :post %>
+          <% end %>
+          <%= link_to "Ver detalles", gusto_path(gusto.id) %><br>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
 
 <br/>
 <%= link_to "Volver a la pagina principal", root_path %>
 <br/>
 
 <% if current_admin %>
-    <%= link_to "Crear Nuevo Gusto", gustos_new_path %>
+  <%= link_to "Crear Nuevo Gusto", gustos_new_path %>
 <% end %>

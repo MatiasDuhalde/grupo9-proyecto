@@ -1,39 +1,39 @@
 <% likeds_id = Array.new %>
 <% current_user.liker_matches.each do |match| %>
-    <% likeds_id.push(match.liked_id) %>
+  <% likeds_id.push(match.liked_id) %>
 <% end %>
 
 <% likers_id = Array.new %>
 <% current_user.liked_matches.each do |match| %>
-    <% likers_id.push(match.liker_id) %>
+  <% likers_id.push(match.liker_id) %>
 <% end %>
 
 
 <h1>Lista de usuarios</h1>
 
 <table>
-    <thead>
+  <thead>
+    <tr>
+      <th>Nombre de usuario</th>
+      <th>Descripción del usuario</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user.id != current_user.id && !likeds_id.include?(user.id) && !likers_id.include?(user.id)%>
         <tr>
-            <th>Nombre de usuario</th>
-            <th>Descripción del usuario</th>
-            <th>Acciones</th>
+          <td> <%= user.nombre %> </td>
+          <td> <%= user.descripcion %> </td>
+          <td> <%= link_to "Ver detalles", user_path(user.id) %> </td>
         </tr>
-    </thead>
+      <% else %>
 
-    <tbody>
-        <% @users.each do |user| %>
-            <% if user.id != current_user.id && !likeds_id.include?(user.id) && !likers_id.include?(user.id)%>
-                <tr>
-                    <td> <%= user.nombre %> </td>
-                    <td> <%= user.descripcion %> </td>
-                    <td> <%= link_to "Ver detalles", user_path(user.id) %> </td>
-                </tr>
-            <% else %>
+      <% end %>
 
-            <% end %>
-
-        <% end %>
-    </tbody>
+    <% end %>
+  </tbody>
 </table>
 
 
