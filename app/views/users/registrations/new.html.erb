@@ -1,58 +1,71 @@
-<h2>Crear Usuario</h2>
+<section id="user_index_img" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column"></div>
+        <div class="column is-three-fifths">
+          <h2 class="title has-text-white has-text-centered">Regístrate</h2>
+          <div class="box">
+            <div id="size_fixed" class="container">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                <div class="field">
+                  <%= f.label :nombre, class:"label" %>
+                  <%= f.text_field :nombre, autofocus: true, class:"input" %>
+                </div>
 
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre, autofocus: true %>
+                <div class="field">
+                  <%= f.label :email, class:"label" %>
+                  <%= f.email_field :email, class:"input" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :edad, class:"label" %>
+                  <%= f.number_field :edad, in: 18...100, class:"input" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :comuna_id, class:"label" %>
+                  <%= f.collection_select :comuna_id, Comuna.order(:nombre), :id, :nombre, include_blank: 'Selecciona una comuna' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :telefono, class:"label" %>
+                  <%= f.text_field :telefono, class:"textarea" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :imagen, class:"label" %>
+                  <%= f.file_field :imagen, accept:'image/*' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label "Contraseña", class:"label" %>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
+                  <% end %><br>
+                  <%= f.password_field :password, class:"input" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label "Confirmar contraseña", class:"label" %>
+                  <%= f.password_field :password_confirmation, class:"input" %>
+                </div>
+
+                <div id="centrado" class="actions">
+                  <br>
+                  <%= f.submit "Crear cuenta", class:"button is-primary" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <button id="buttonuser" class="button">
+            <%= link_to "Volver a la pagina principal", root_path %>
+          </button>
+        </div>
+        <div class="column"></div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :edad %><br>
-    <%= f.number_field :edad, in: 18...100 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :comuna_id %><br>
-    <%= f.collection_select :comuna_id, Comuna.order(:nombre), :id, :nombre, include_blank: 'Selecciona una comuna' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :telefono %><br>
-    <%= f.text_field :telefono %>
-  </div>
-
-  <div class="field">
-    <%= f.label :imagen %><br>
-    <%= f.file_field :imagen, accept:'image/*' %>
-  </div>
-
-  <div class="field">
-    <%= f.label "Contraseña" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
-    <% end %><br>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label "Confirmar contraseña" %><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Crear cuenta" %>
-  </div>
-<% end %>
-
-<br>
-<%= render "users/shared/links" %>
-<br>
-
-<%= link_to "Volver a la pagina principal", root_path %>
+</section>

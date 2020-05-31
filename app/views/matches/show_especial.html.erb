@@ -5,6 +5,7 @@
             <div class="column">
                 <h1 class="title has-text-white"> Te han llegado las siguientes posibilidades de matches! </h1> 
                 <div class="box">
+                  <div id="size_fixed" class="container">
                     <% current_user.liked_matches.each do |match| %>
                         <% if match.accept != true && match.n_rejections == 0%>
                             <article class="media">
@@ -42,6 +43,7 @@
                         <% else %>
                         <% end %>
                     <% end %> 
+                  </div>
                 </div>
             </div>
             <div class="column">
@@ -49,6 +51,7 @@
                 <% all_matches =  current_user.liked_matches + current_user.liker_matches%>
                 <h1 class="title has-text-white"> Has hecho match con los siguientes usuario/s! </h1> 
                 <div class="box">
+                  <div id="size_fixed" class="container">
                     <% all_matches.each do |match| %>
                         <% if match.accept == true && match.liked_id == current_user.id%>
                             <article class="media">
@@ -112,6 +115,7 @@
                             </article>
                         <% end %>
                     <% end %> 
+                  </div>
                 </div>
             </div>
         </div>
