@@ -22,6 +22,10 @@
 	opacity: 1.0;
 }
 
+.table{
+	width: 100%;
+}
+
 #centrado{
 	text-align: center;
 }
