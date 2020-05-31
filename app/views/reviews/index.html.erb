@@ -5,17 +5,17 @@
         <% if params[:local_id] %>
           <% @local.reviews.order(:created_at).each do |review| %>
             <article class="media">
-              <figure class="media-left">
+              <div class="media-left">
                 <% if review.user.imagen.attached? %>
-                    <p class="image is-64x64">
-                        <%= review.user.imagen%>
-                    </p>
+                    <figure class="image is-64x64">
+                        <%= image_tag(review.user.imagen)%>
+                    </figure>
                 <% else%>
-                    <p class="image is-64x64">
+                    <figure class="image is-64x64">
                         <img src="https://bulma.io/images/placeholders/128x128.png">
-                    </p>
+                    </figure>
                 <% end %>
-              </figure>
+              </div>
               <div class="media-content">
                 <div class="content">
                   <p>
