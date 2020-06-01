@@ -1,14 +1,17 @@
-<p> Bienvenido </p>
-    <p> Este es el panel de control del administrador <%= current_admin.email %> </p>
-    <p>
-        <%= link_to "Ver el listado de comunas", comunas_index_path %>
-    </p>
-    <p>
-        <%= link_to "Ver el listado de gustos", gustos_index_path %>
-    </p>
-    <p>
-        <%= link_to "Ver el listado de locales", locals_index_path %>
-    </p>
-    <p>
-        <%= link_to "Sign Out", destroy_admin_session_path, method: :delete %>
-    </p>
+  <p> Bienvenido </p>
+  <p> Este es el panel de control del administrador <%= current_admin.email %> </p>
+  <p>
+    <%= link_to "Ver el listado de comunas", comunas_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de gustos", gustos_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de locales", locals_index_path %>
+  </p>
+  <p>
+    <%= link_to "Ver el listado de reviews", reviews_index_path %>
+  </p>
+  <p>
+    <%= link_to "Cerrar Sesión", destroy_admin_session_path, method: :delete %>
+  </p>

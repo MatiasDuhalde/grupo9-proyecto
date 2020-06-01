@@ -1,29 +1,31 @@
-<p>
-  <strong> Local: </strong>
-  <%= @review.local.nombre %>
-</p>
-<p>
-  <strong> Autor: </strong>
-  <%= @review.user.nombre %>
-</p>
-<p>
-  <strong> Fecha: </strong>
-  <%= @review.created_at %>
-</p>
-<p>
-  <strong> Calificación: </strong>
-  <%= @review.calificacion %>
-</p>
-<p>
-  <strong> Comentario: </strong>
-  <%= @review.comentario %>
-</p>
-
-<%= link_to "Volver al listado de reviews", reviews_index_path %>
-<br/>
-
-<% if current_admin || (current_user && current_user.id == @review.user.id) %>
-  <%= link_to "Editar esta review", review_edit_path(@review.id) %>
-  <br/>
-  <%= link_to "Eliminar esta review", review_path(@review.id), method: :delete, data: {confirm: "Está seguro?"} %>
-<% end %>
+<section id="user_index_img" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="box">
+        <article class="media">
+          <div class="media-content">
+            <div class="content">
+                <h1 class="title is-1"><%= @review.local.nombre %></h1>
+                <strong><%= @review.user.nombre %></strong><small> <%= @review.user.email %></small>
+                <p><%= @review.comentario %></p>
+                <small>Calificacion: <%= @review.calificacion %></small>
+                <br>
+                <small><%= @review.created_at %></small>
+            </div>
+          </div>
+        </article>
+      </div>
+        <button id="buttonuser" class="button">
+          <%= link_to "Volver al listado de reviews", reviews_index_path %>
+        </button>
+      <% if current_admin || (current_user && current_user.id == @review.user.id) %>
+        <button id="buttonuser" class="button">
+          <%= link_to "Editar esta review", review_edit_path(@review.id) %>
+        </button>
+        <button id="buttonuser" class="button">
+          <%= link_to "Eliminar esta review", review_path(@review.id), method: :delete, data: {confirm: "Está seguro?"} %>
+        </button>
+    <% end %>
+    </div>
+  </div>
+</section>

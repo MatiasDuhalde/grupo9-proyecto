@@ -1,90 +1,112 @@
-<h1>Reviews</h1>
+<section id="default_img" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="box">
+        <% if params[:local_id] %>
+          <% @local.reviews.order(:created_at).each do |review| %>
+            <article class="media">
+              <div class="media-left">
+                <% if review.user.imagen.attached? %>
+                    <figure class="image is-64x64">
+                        <%= image_tag(review.user.imagen)%>
+                    </figure>
+                <% else%>
+                    <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                    </figure>
+                <% end %>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong><%= review.user.nombre %></strong>
+                    <br>
+                    <%= review.comentario %>
+                  </p>
+                </div>
+                <nav class="level is-mobile">
+                  <div class="level-left">
+                      <strong>Calificacion :</strong><%= review.calificacion %>
+                  </div>
+                  <div class="level-left">
+                      <strong>Fecha :</strong><%= review.created_at %>
+                  </div>
+                  <div class="level-left">
+                    <a class="level-item">
+                      <button class="button">
+                        <%= link_to "Ver detalles", review_path(review.id) %>
+                      </button>
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </article>
+          <% end %>
 
-<% if params[:local_id] %>
-<p>Estas son las reviews del local <%= @local.nombre %>:</p>
-<table>
-  <thead>
-  <tr>
-    <th>Autor</th>
-    <th>Calificación</th>
-    <th>Comentario</th>
-    <th>Fecha</th>
-    <th>Acciones</th>
-  </tr>
-  </thead>
+        <% elsif current_admin %>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Local</th>
+              <th>Autor</th>
+              <th>Calificación</th>
+              <th>Comentario</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+            </thead>
 
-  <tbody>
-  <% @local.reviews.order(:created_at).each do |review| %>
-    <tr>
-    <td> <%= review.user.nombre %> </td>
-    <td> <%= review.calificacion %> </td>
-    <td> <%= review.comentario %> </td>
-    <td> <%= review.created_at %> </td>
-    <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<% elsif current_admin %>
-<table>
-  <thead>
-  <tr>
-    <th>Local</th>
-    <th>Autor</th>
-    <th>Calificación</th>
-    <th>Comentario</th>
-    <th>Fecha</th>
-    <th>Acciones</th>
-  </tr>
-  </thead>
+            <tbody>
+            <% @reviews.each do |review| %>
+              <tr>
+              <td> <%= review.local.nombre %> </td>
+              <td> <%= review.user.nombre %> </td>
+              <td> <%= review.calificacion %> </td>
+              <td> <%= review.comentario %> </td>
+              <td> <%= review.created_at %> </td>
+              <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
 
-  <tbody>
-  <% @reviews.each do |review| %>
-    <tr>
-    <td> <%= review.local.nombre %> </td>
-    <td> <%= review.user.nombre %> </td>
-    <td> <%= review.calificacion %> </td>
-    <td> <%= review.comentario %> </td>
-    <td> <%= review.created_at %> </td>
-    <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+          <% elsif current_user %>
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Local</th>
+                <th>Calificación</th>
+                <th>Comentario</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+              </tr>
+              </thead>
 
-<% elsif current_user %>
-<p>Estas son las reviews que has escrito:</p>
-<table>
-  <thead>
-  <tr>
-    <th>Local</th>
-    <th>Calificación</th>
-    <th>Comentario</th>
-    <th>Fecha</th>
-    <th>Acciones</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% current_user.reviews.order(:created_at).each do |review| %>
-    <tr>
-    <td> <%= review.local.nombre %> </td>
-    <td> <%= review.calificacion %> </td>
-    <td> <%= review.comentario %> </td>
-    <td> <%= review.created_at %> </td>
-    <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<% end %>
-
-<br>
-<%= link_to "Volver", :back %>
-<br>
-<%= link_to "Volver a la página principal", root_path %>
-<br>
-
-<% if current_admin %>
-  <%= link_to "Crear nueva review", reviews_new_path %>
-<% end %>
+              <tbody>
+              <% current_user.reviews.order(:created_at).each do |review| %>
+                <tr>
+                <td> <%= review.local.nombre %> </td>
+                <td> <%= review.calificacion %> </td>
+                <td> <%= review.comentario %> </td>
+                <td> <%= review.created_at %> </td>
+                <td> <%= link_to "Ver detalles", review_path(review.id) %> </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <% end %>
+      </div>
+      <button id="buttonuser" class="button">
+        <%= link_to "Volver", :back %>
+      </button>
+      <button id="buttonuser" class="button">
+        <%= link_to "Volver a la página principal", root_path %>
+      </button>
+      <% if current_admin %>
+        <button id="buttonuser" class="button">
+          <%= link_to "Crear nueva review", reviews_new_path %>
+        </button>
+      <% end %>
+    </div>
+  </div>
+</section>

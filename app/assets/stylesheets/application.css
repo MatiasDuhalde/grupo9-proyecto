@@ -22,6 +22,10 @@
 	opacity: 1.0;
 }
 
+.table{
+	width: 100%;
+}
+
 #centrado{
 	text-align: center;
 }
@@ -58,4 +62,9 @@
 #match_img_2{
  	background-image: url(https://images.unsplash.com/photo-1474401639975-278ecfd1b421?ixlib=rb-1.2.1&auto=format&fit=crop&w=1355&q=80);
  	background-size: cover;
+}
+
+#size_fixed{
+  height: 500px;
+  overflow: scroll;
 }
