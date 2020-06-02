@@ -1,0 +1,128 @@
+<section id="match_img" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <h1 class="title has-text-white"> Te han llegado las siguientes posibilidades de matches! </h1> 
+                <div class="box">
+                  <div id="size_fixed" class="container">
+                    <% current_user.liked_matches.each do |match| %>
+                        <% if match.accept != true && match.n_rejections == 0%>
+                            <article class="media">
+                              <div class="media-left">
+                                <% if match.liker.imagen.attached? %>
+                                    <figure class="image is-64x64">
+                                        <%= image_tag(match.liker.imagen)%>
+                                    </figure>
+                                <% else%>
+                                    <figure class="image is-64x64">
+                                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                                    </figure>
+                                <% end %>
+                              </div>
+                              <div class="media-content">
+                                <div class="content">
+                                  <p>
+                                    <strong><%= match.liker.nombre %></strong> <small><%match.liker.email%></small>
+                                    <br>
+                                    <%= match.liker.descripcion %>
+                                  </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                  <div class="level-left">
+                                    <a class="level-item">
+                                      <%=  button_to 'Aceptar', matches_update_path(:match_id => match.id, :accept => true), method: :patch  %>
+                                    </a>
+                                    <a class="level-item">
+                                      <%=  button_to 'Rechazar', matches_update_rejections_path(:match_id => match.id, :n_rejections => 1), method: :patch  %>
+                                    </a>
+                                  </div>
+                                </nav>
+                              </div>
+                            </article>
+                        <% else %>
+                        <% end %>
+                    <% end %> 
+                  </div>
+                </div>
+            </div>
+            <div class="column">
+                <% all_matches = Array.new %>
+                <% all_matches =  current_user.liked_matches + current_user.liker_matches%>
+                <h1 class="title has-text-white"> Has hecho match con los siguientes usuario/s! </h1> 
+                <div class="box">
+                  <div id="size_fixed" class="container">
+                    <% all_matches.each do |match| %>
+                        <% if match.accept == true && match.liked_id == current_user.id%>
+                            <article class="media">
+                              <div class="media-left">
+                                <% if match.liker.imagen.attached? %>
+                                    <figure class="image is-64x64">
+                                        <%= image_tag(match.liker.imagen)%>
+                                    </figure>
+                                <% else%>
+                                    <figure class="image is-64x64">
+                                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                                    </figure>
+                                <% end %>
+                              </div>
+                              <div class="media-content">
+                                <div class="content">
+                                  <p>
+                                    <strong><%= match.liker.nombre %></strong> <small><%match.liker.email%></small>
+                                    <br>
+                                    <%= match.liker.descripcion %>
+                                  </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                  <div class="level-left">
+                                    <a class="level-item">
+                                      <%=  button_to 'Agendar local para la cita', match_path(match.id) , method: :get %>
+                                    </a>
+                                  </div>
+                                </nav>
+                              </div>
+                            </article>
+                        <% elsif match.accept == true && match.liker_id == current_user.id%>
+                            <article class="media">
+                              <div class="media-left">
+                                <% if match.liked.imagen.attached? %>
+                                    <figure class="image is-64x64">
+                                        <%= image_tag(match.liked.imagen)%>
+                                    </figure>
+                                <% else%>
+                                    <figure class="image is-64x64">
+                                        <img src="https://bulma.io/images/placeholders/128x128.png">
+                                    </figure>
+                                <% end %>
+                              </div>
+                              <div class="media-content">
+                                <div class="content">
+                                  <p>
+                                    <strong><%= match.liked.nombre %></strong> <small><%match.liked.email%></small>
+                                    <br>
+                                    <%= match.liked.descripcion %>
+                                  </p>
+                                </div>
+                                <nav class="level is-mobile">
+                                  <div class="level-left">
+                                    <a class="level-item">
+                                      <%=  button_to 'Agendar local para la cita', match_path(match.id) , method: :get %>
+                                    </a>
+                                  </div>
+                                </nav>
+                              </div>
+                            </article>
+                        <% end %>
+                    <% end %> 
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="buttonuser" class="button">
+            <%= link_to "Volver a la pagina principal", root_path %>
+        </button>
+    </div>
+  </div>
+</section>

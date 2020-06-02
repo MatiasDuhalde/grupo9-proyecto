@@ -12,6 +12,8 @@ AllCops:
   TargetRubyVersion: 2.6.5
 Rails:
   Enabled: true
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
 Performance:
   Enabled: true
 Layout/ParameterAlignment:
@@ -232,11 +234,11 @@ Metrics/ClassLength:
   CountComments: false
   Max: 100
 Metrics/MethodLength:
-  Description: Avoid methods longer than 15 lines of code.
+  Description: Avoid methods longer than 20 lines of code.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#short-methods
   Enabled: true
   CountComments: true
-  Max: 15
+  Max: 20
   Exclude:
   - "spec/**/*"
 Metrics/ParameterLists:

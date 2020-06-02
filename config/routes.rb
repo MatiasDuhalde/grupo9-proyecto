@@ -37,6 +37,10 @@ Rails.application.routes.draw do
   delete 'comunas/:id', to: 'comunas#destroy'
   # ------------------------------------------------------------------------------------------------
   devise_for :users, path: 'users', controllers: { sessions: "locals/sessions" }
+  # READ
+  get 'users/index', to: 'users#index'
+  get 'users/:id', to: 'users#show', as: 'user'
+
   # ------------------------------------------------------------------------------------------------
   devise_for :locals, path: 'locals', controllers: { sessions: "locals/sessions" }
   # READ
@@ -47,4 +51,23 @@ Rails.application.routes.draw do
   # ------------------------------------------------------------------------------------------------
   devise_for :admins, path: 'admins', controllers: { sessions: "admins/sessions" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # ------------------------------------------------------------------------------------------------
+  # CREATE
+  post 'matches', to: 'matches#create'
+  # READ
+  get 'matches/show_especial', to: 'matches#show_especial'
+  get 'matches/:id', to: 'matches#management_local_view', as: 'match'
+  # UPDATE
+  patch 'matches/update', to: 'matches#update'
+  patch 'matches/update_rejections', to: 'matches#update_rejections'
+  # patch 'matches/management_local_view', to: 'matches#management_local_view'
+  patch 'matches/update_local_and_boolean', to: 'matches#update_local_and_boolean'
+  patch 'matches/accept_local', to: 'matches#accept_local'
+  patch 'matches/change_local', to: 'matches#change_local'
+  # ------------------------------------------------------------------------------------------------
+  # CREATE
+  post 'add_gusto', to: 'users#add_gusto'
+  # DELETE
+  delete 'remove_gusto', to: 'users#remove_gusto'
 end

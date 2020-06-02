@@ -1,0 +1,145 @@
+<% if current_user.id == @match.liker_id %>
+    <% user_type = "liker" %>
+<% elsif current_user.id == @match.liked_id %>
+    <% user_type = "liked" %>
+<% end %>
+
+<% puts @match.local %>
+
+<% if @match.local == nil %>
+
+    <section id="match_img_2" class="hero is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+            <div class="box">
+                <h1 class="title has-text-black">Debes seleccionar Local para la cita!</h1>
+                <% @locals.each do |local| %>
+                        <article class="media">
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <h1 class="subtitle is-5 has-text-black"><%= local.nombre %></h1>
+                                <%= local.descripcion %>
+                              </p>
+                            </div>
+                            <nav class="level is-mobile">
+                              <div class="level-left">
+                                <a class="level-item">
+                                    <button class="button">
+                                        <%= link_to "Seleccionar Local", matches_update_local_and_boolean_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %> 
+                                    </button>
+                                </a>
+                              </div>
+                            </nav>
+                          </div>
+                        </article>
+                <% end %> 
+            </div>
+            <button id="buttonuser" class="button">
+                <%= link_to "Volver a la pagina de gestion de tus matches", matches_show_especial_path %>
+            </button>
+        </div>
+      </div>
+    </section>
+
+<% elsif @match.local != nil && (@match.liker_bool_local == false || @match.liked_bool_local == false)%>
+
+    <section id="match_img_2" class="hero is-primary is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+            <div class="box">
+                <h1 class="title is-1 has-text-black"> Local seleccionado: <%= @match.local.nombre %></h1>
+
+                <p>
+                    <%= @match.local.descripcion %>.
+                </p>
+
+                <hr>
+
+                <% if user_type == "liker" %>
+
+
+                    <% if @match.liker_bool_local == false %>
+
+                        <p class="subtitle has-text-black">Si te gusta el actual local, apreta el boton "Me gusta el local! O puedes seleccionar el que mas te guste en
+                        la parte inferior"</p>
+
+                        <br/>
+                        <%= button_to 'Me gusta el local!', matches_accept_local_path(:match_id => @match.id, :user_type => user_type), method: :patch, class:"button" %>
+                        <br/>
+                    <% else %>
+
+                        <p class="subtitle has-text-black">Estas de acuerdo con el local selecionado!</p>
+
+                    <% end %>
+
+                <% elsif user_type == "liked" %>
+                
+                    <% if @match.liked_bool_local == false %>
+
+                        <p class="subtitle has-text-black">Si te gusta el actual local, apreta el boton "Me gusta el local!"</p>
+
+                        <br/>
+                        <%= button_to 'Me gusta el local!', matches_accept_local_path(:match_id => @match.id, :user_type => user_type), method: :patch, class:"button"  %>
+                        <br/>
+
+                    <% else %>
+
+                        <p class="subtitle has-text-black">Estas de acuerdo con el local selecionado!</p>
+
+                    <% end %>
+
+                <% end %>
+            </div>
+            <div class="box">
+                <% @locals.each do |local| %>
+                        <article class="media">
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <h1 class="subtitle is-5 has-text-black"><%= local.nombre %></h1>
+                                <%= local.descripcion %>
+                              </p>
+                            </div>
+                            <nav class="level is-mobile">
+                              <div class="level-left">
+                                <a class="level-item">
+                                    <button class="button">
+                                        <%= link_to "Cambiar a este Local", matches_change_local_path(:match_id => @match.id, :user_type => user_type, :local_id => local.id), method: :patch %>
+                                    </button>
+                                </a>
+                              </div>
+                            </nav>
+                          </div>
+                        </article>
+                <% end %> 
+            </div>
+            <button id="buttonuser" class="button">
+                <%= link_to "Volver a la pagina de gestion de tus matches", matches_show_especial_path %>
+            </button>
+        </div>
+      </div>
+    </section>         
+
+<% elsif @match.local != nil && @match.liker_bool_local == true && @match.liked_bool_local == true%>
+
+    <section id="match_img_2" class="hero is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+            <div class="box">
+                <h1 class="title"> Todo listo! Mucha suerte en tu cita! </h1>
+
+                <p>
+                    <strong> Local Seleccionado: </strong>
+                    <%= @match.local.nombre %>
+                </p>
+                <p>
+                    <strong> Descripción del local: </strong>
+                    <%= @match.local.descripcion %>Curabitur sapien felis, feugiat sed porta at, tristique sed augue. Vestibulum at lacinia tortor. Donec auctor convallis metus, eu efficitur lectus molestie id. Nunc ut neque vel lorem lobortis varius non in massa. Donec molestie commodo efficitur. Fusce mattis dolor ac viverra tincidunt. Aenean at venenatis tortor. 
+                </p>
+            </div>
+        </div>
+      </div>
+    </section>
+
+<% end %>

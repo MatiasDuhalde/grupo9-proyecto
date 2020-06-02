@@ -1,0 +1,62 @@
+<p>
+  <strong> Nombre del usuario: </strong>
+  <%= @user.nombre %>
+</p>
+<p>
+  <strong> Descripción del usuario: </strong>
+  <%= @user.descripcion %>
+</p>
+
+<p>
+  <strong> Foto del usuario: </strong>
+</p>
+
+<% if @user.imagen.attached? %>
+  <%= image_tag(@user.imagen) %>
+<% else%>
+  <p> No tiene imagen de perfil </p>
+<% end %>
+
+<br/>
+
+<%= button_to 'Hacer match', matches_path(:liker_id => current_user.id, :liked_id => @user.id, :accept => false,
+                    :n_rejections => 0, :liked_bool_local => false, :liker_bool_local => false), method: :post %>
+
+
+<section id="default_img" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+        <div class="tile is-ancestor">
+          <div class="tile is-4 is-vertical is-parent">
+            <div class="tile is-child box">
+                <% if @user.imagen.attached? %>
+                    <figure class="image is-4by3">
+                      <%= image_tag(@user.imagen) %>
+                    </figure>
+                <% else%>
+                    <figure class="image is-4by3">
+                        <img src="https://bulma.io/images/placeholders/640x480.png">
+                    </figure>
+                <% end %>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <p class="title"><%= @user.nombre%></p>
+              <p><%=@user.descripcion%></p>
+              <div id="centrado" class="container">
+              	<%= button_to 'Hacer match', matches_path(:liker_id => current_user.id, :liked_id => @user.id, :accept => false,
+				                    :n_rejections => 0, :liked_bool_local => false, :liker_bool_local => false), method: :post, class:"button is-large is-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button id="buttonuser" class="button has-text-black is-large">
+            <%= link_to "Volver a la pagina principal", root_path, class:"has-text-black" %>
+        </button>
+        <button id="buttonuser" class="button has-text-black is-large">
+            <%= link_to "Volver al listado de Usuarios", users_index_path, class:"has-text-black" %>
+        </button>
+    </div>
+  </div>
+</section>

@@ -1,19 +1,19 @@
 <h1>Editando Gusto existente</h1>
 
 <%= form_with(model: @gusto, method: :patch) do |f| %>
-    <div class="field" >
-        <%= f.label :nombre %>
-        <%= f.text_field :nombre %>
-    </div>
+  <div class="field" >
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre %>
+  </div>
 
-    <div class="field" >
-        <%= f.label :descripcion %>
-        <%= f.text_area :descripcion %>
-    </div>
+  <div class="field" >
+    <%= f.label :descripcion %>
+    <%= f.text_area :descripcion %>
+  </div>
 
-    <div class="actions">
-        <%= f.submit %>
-    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
 
 <br/>

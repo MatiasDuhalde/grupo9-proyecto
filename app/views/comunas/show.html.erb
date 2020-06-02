@@ -1,13 +1,22 @@
-<p>
-    <strong> Nombre comuna: </strong>
-    <%= @comuna.nombre %>
-</p>
-
-<%= link_to "Volver al listado de comunas", comunas_index_path %>
-<br/>
-
-<% if current_admin %>
-    <%= link_to "Editar esta comuna", comuna_edit_path(@comuna.id) %>
-    <br/>
-    <%= link_to "Eliminar esta comuna", comuna_path(@comuna.id), method: :delete, data: {confirm: "Está seguro?"} %>
-<% end %>
+<section id="match_img_2" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+    	<div class="box">
+    		<h1 class="title">
+		        <%= @comuna.nombre %>
+		    </h1>
+    	</div>
+	      <button id="buttonuser" class="button">
+	      	<%= link_to "Volver al listado de comunas", comunas_index_path %>
+	      </button>
+		<% if current_admin %>
+			<button id="buttonuser" class="button">
+      			<%= link_to "Editar esta comuna", comuna_edit_path(@comuna.id) %>
+      		</button>
+      		<button id="buttonuser" class="button">
+      			<%= link_to "Eliminar esta comuna", comuna_path(@comuna.id), method: :delete, data: {confirm: "Está seguro?"} %>
+      		</button>
+		<% end %>
+    </div>
+  </div>
+</section>

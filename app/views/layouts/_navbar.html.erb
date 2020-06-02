@@ -1,0 +1,83 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item">
+          <a><%= link_to "Home", root_path, class: "has-text-black"%></a>
+      </div>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link has-text-black">
+          Descubre
+        </a>
+
+        <div class="navbar-dropdown">
+          <div class="navbar-item">
+            <%= link_to "Comunas", comunas_index_path, class: "has-text-black"%>
+          </div>
+          <div class="navbar-item">
+            <%= link_to "Gustos", gustos_index_path, class: "has-text-black" %>
+          </div>
+          <div class="navbar-item">
+            <%= link_to "Locales", locals_index_path, class: "has-text-black" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <%if current_user%>
+        <div class="navbar-item">
+          <button class="button is-info">
+            <strong><%= link_to "Edit Account", edit_user_registration_path, class: "has-text-white"%></strong>
+          </button> 
+        </div>
+        <div class="navbar-item">
+          <button class="button is-danger">
+            <strong><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "has-text-white"%></strong>
+          </button> 
+        </div>
+      <%elsif current_admin%>
+        <div class="navbar-item">
+          <button class="button is-danger">
+            <strong><%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "has-text-white"%></strong>
+          </button> 
+        </div>
+      <%elsif current_local%>
+        <div class="navbar-item">
+          <button class="button is-info">
+            <strong><%= link_to "Edit Local", edit_local_registration_path, class: "has-text-white"%></strong>
+          </button> 
+        </div>
+        <div class="navbar-item">
+          <button class="button is-danger">
+            <strong><%= link_to "Log out", destroy_local_session_path, method: :delete, class: "has-text-white"%></strong>
+          </button> 
+        </div>
+      <%else%>
+        <div class="navbar-item">
+          <button class="button is-info">
+            <strong><%= link_to "User", new_user_session_path, class: "has-text-white"%></strong>
+          </button>
+        </div>
+        <div class="navbar-item">
+          <button class="button is-info">
+            <strong><%= link_to "Admin", new_admin_session_path, class: "has-text-white"%></strong>
+          </button>
+        </div>
+        <div class="navbar-item">
+          <button class="button is-info">
+            <strong><%= link_to "Local", new_local_session_path, class: "has-text-white"%></strong>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>

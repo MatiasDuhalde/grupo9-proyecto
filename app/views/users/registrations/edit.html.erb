@@ -1,88 +1,102 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<section id="user_index_img" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column"></div>
+        <div class="column is-three-fifths">
+          <h2 class="title has-text-white has-text-centered">Editar Usuario</h2>
+          <div class="box">
+            <div id="size_fixed" class="container">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                
+                <div class="field">
+                  <%= f.label :nombre, class:"label" %>
+                  <%= f.text_field :nombre, autocomplete: "nombre", class:"input" %>
+                </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                <div class="field">
+                  <%= f.label :email, class:"label"%>
+                  <%= f.email_field :email, autocomplete: "email", class:"input" %>
+                </div>
 
-  <% if current_user.imagen.attached? %>
+                <div class="field">
+                  <%= f.label :edad, class:"label"%>
+                  <%= f.number_field :edad, in: 18...100, autocomplete: "edad", class:"input" %>
+                </div>
 
-    <div class="field">
-      <%= image_tag(current_user.imagen) %>
+                <div class="field">
+                  <%= f.label :comuna_id, class:"label"%>
+                  <%= f.collection_select :comuna_id, Comuna.order(:nombre), :id, :nombre, include_blank: 'Selecciona una comuna' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :telefono, class:"label"%>
+                  <%= f.text_field :telefono, autocomplete: "telefono", class:"input" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :imagen, class:"label"%>
+                  <% if current_user.imagen.attached? %>
+                      <figure class="image is-4by3">
+                        <%= image_tag(current_user.imagen) %>
+                      </figure>
+                  <% else%>
+                      <figure class="image is-4by3">
+                          <img src="https://bulma.io/images/placeholders/640x480.png">
+                      </figure>
+                  <% end %>
+                  <br>
+                  <%= f.file_field :imagen, accept:'image/*' %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :descripcion, class:"label"%>
+                  <%= f.text_area :descripcion, autocomplete: "descripcion", class:"textarea" %>
+                </div>
+
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                <% end %>
+
+                <div class="field">
+                  <%= f.label "Contraseña", class:"label"%> <i>(deja en blanco si no deseas cambiarla)</i>
+                  <%= f.password_field :password, class:"input" %>
+                  <% if @minimum_password_length %>
+                    <br>
+                    <em><%= @minimum_password_length %> caracteres mínimo</em>
+                  <% end %>
+                </div>
+
+                <div class="field">
+                  <%= f.label "Confirmar contraseña", class:"label" %>
+                  <%= f.password_field :password_confirmation, class:"input" %>
+                </div>
+
+                <div class="field">
+                  <%= f.label "Contraseña actual", class:"label"%> <i>(debes introducir tu contraseña actual para confirmar tus cambios)</i>
+                  <%= f.password_field :current_password, class:"input" %>
+                </div>
+
+                <div class="container">
+                  <div class="columns">
+                    <div id="centrado" class="column">
+                    <%= f.submit "Actualizar", class:"button" %>
+              <% end %>
+                    </div>
+                    <div class="column">
+                      <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro que quieres cancelar tu cuenta?" }, method: :delete, class:"button" %>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <button id="buttonuser" class="button">
+            <%= link_to "Volver a la pagina principal", root_path %>
+          </button>
+        </div>
+        <div class="column"></div>
+      </div>
     </div>
-  
-  <% else%>
-      <p> No tienes imagen de perfil </p>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :imagen %><br />
-    <%= f.file_field :imagen %>
   </div>
-
-  <div class="field">
-    <%= f.label :comuna_id %><br />
-    <%= f.text_field :comuna_id, autofocus: true, autocomplete: "comuna_id" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :edad %><br />
-    <%= f.text_field :edad, autofocus: true, autocomplete: "edad" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :telefono %><br />
-    <%= f.text_field :telefono, autofocus: true, autocomplete: "telefono" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :gusto_id %><br />
-    <%= f.text_field :gusto_id, autofocus: true, autocomplete: "gusto_id" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre, autofocus: true, autocomplete: "nombre" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :descripcion %><br />
-    <%= f.text_area :descripcion, autofocus: true, autocomplete: "descripcion" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</section>

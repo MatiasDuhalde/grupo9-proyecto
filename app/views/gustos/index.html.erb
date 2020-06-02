@@ -1,29 +1,126 @@
-<h1>Lista de Gustos</h1>
+<% if current_user %>
+  <section id="match_img" class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+          <div class="columns">
+              <div class="column">
+                  <h1 class="title has-text-white"> Estos son tus Gustos! </h1> 
+                  <div class="box">
+                    <div id="size_fixed" class="container">
+                      <% current_user.gustos.each do |gusto| %>
+                        <article class="media">
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <h6><%= gusto.nombre %></h6>
+                                <%= gusto.descripcion %>
+                              </p>
+                            </div>
+                            <nav class="level is-mobile">
+                              <div class="level-left">
+                                <div class="level-item">
+                                  <button class="button is-danger">
+                                    <%= link_to 'Quitar gusto', remove_gusto_path(user_id: current_user.id, gusto_id: gusto.id), method: :delete, class:"has-text-white" %>
+                                  </button>
+                                </div>
+                                <div class="level-item">
+                                  <button class="button is-info">
+                                    <%= link_to "Ver detalles", gusto_path(gusto.id), class:"has-text-white"%>
+                                  </button>
+                                </div>
+                              </div>
+                            </nav>
+                          </div>
+                        </article>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+              <div class="column">
+                  <h1 class="title has-text-white"> Puedes tomar de aquí el que quieras! </h1> 
+                  <div class="box">
+                    <div id="size_fixed" class="container">
+                      <% @gustos.each do |gusto| %>
+                        <article class="media">
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <h6><%= gusto.nombre %></h6>
+                                <%= gusto.descripcion %>
+                              </p>
+                            </div>
+                            <nav class="level is-mobile">
+                              <div class="level-left">
+                                <div class="level-item">
+                                  <button class="button is-primary">
+                                    <%= link_to 'Agregar gusto', add_gusto_path(user_id: current_user.id, gusto_id: gusto.id), method: :post, class:"has-text-white" %>
+                                  </button>
+                                </div>
+                                <div class="level-item">
+                                  <button class="button is-info">
+                                    <%= link_to "Ver detalles", gusto_path(gusto.id), class:"has-text-white" %>
+                                  </button>
+                                </div>
+                              </div>
+                            </nav>
+                          </div>
+                        </article>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+          </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nombre del Gusto</th>
-            <th>Descripción del gusto</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+          <button id="buttonuser" class="button">
+              <%= link_to "Volver a la pagina principal", root_path %>
+          </button>
+          <% if current_admin %>
+            <button id="buttonuser" class="button">
+              <%= link_to "Crear Nuevo Gusto", gustos_new_path %>
+            </button>
+          <% end %>
+      </div>
+    </div>
+  </section>
+<% else %>
+  <section id="match_img" class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title has-text-white"> Mira todos los gustos que hay! </h1> 
+        <div class="box">
+          <div id="size_fixed" class="container">
+            <% @gustos.each do |gusto| %>
+              <article class="media">
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <h6><%= gusto.nombre %></h6>
+                      <%= gusto.descripcion %>
+                    </p>
+                  </div>
+                  <nav class="level is-mobile">
+                    <div class="level-left">
+                      <div class="level-item">
+                        <% if current_user %>
+                          <button class="button is-primary">
+                            <%= link_to 'Agregar gusto', add_gusto_path(user_id: current_user.id, gusto_id: gusto.id), method: :post, class:"has-text-white" %>
+                          </button>
+                        <% end %>
+                      </div>
+                      <div class="level-item">
+                        <button class="button is-info">
+                          <%= link_to "Ver detalles", gusto_path(gusto.id), class:"has-text-white" %>
+                        </button>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
+              </article>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <tbody>
-        <% @gustos.each do |gusto| %>
-            <tr>
-                <td> <%= gusto.nombre %> </td>
-                <td> <%= gusto.descripcion %> </td>
-                <td> <%= link_to "Ver detalles", gusto_path(gusto.id) %> </td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
-
-<br/>
-<%= link_to "Volver a la pagina principal", root_path %>
-<br/>
-
-<% if current_admin %>
-    <%= link_to "Crear Nuevo Gusto", gustos_new_path %>
 <% end %>

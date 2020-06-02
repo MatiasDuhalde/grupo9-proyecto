@@ -1,17 +1,28 @@
-<p>
-    <strong> Nombre del Gusto: </strong>
-    <%= @gusto.nombre %>
-</p>
-<p>
-    <strong> Descripción del Gusto: </strong>
-    <%= @gusto.descripcion %>
-</p>
+<section id="user_index_img" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="box">
+        <article class="media">
+          <div class="media-content">
+            <div class="content">
+                <h1 class="title is-1"><%= @gusto.nombre %></h1>
+                <%= @gusto.descripcion %>
+            </div>
+          </div>
+        </article>
 
-<%= link_to "Volver al listado de gustos", gustos_index_path %>
-<br/>
-
-<% if current_admin %>
-    <%= link_to "Editar este gusto", gusto_edit_path(@gusto.id) %>
-    <br/>
-    <%= link_to "Eliminar este Gusto", gusto_path(@gusto.id), method: :delete, data: {confirm: "Está seguro?"} %>
-<% end %>
+      </div>
+        <button id="buttonuser" class="button">
+          <%= link_to "Volver al listado de gustos", gustos_index_path %>
+        </button>
+      <% if current_admin %>
+        <button id="buttonuser" class="button">
+          <%= link_to "Editar este gusto", gusto_edit_path(@gusto.id) %>
+        </button>
+        <button id="buttonuser" class="button">
+          <%= link_to "Eliminar este Gusto", gusto_path(@gusto.id), method: :delete, data: {confirm: "Está seguro?"} %>
+        </button>
+    <% end %>
+    </div>
+  </div>
+</section>
