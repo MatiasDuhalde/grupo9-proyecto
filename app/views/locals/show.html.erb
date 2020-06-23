@@ -9,6 +9,11 @@
                 <h6 class="subtitle is-6"><%= @local.comuna.nombre %></h6>
                 <br>
                 <%= @local.descripcion %>
+                <% if not @local.place_id %>
+                <p>Ubicación no disponible</p>
+                <% else %>
+                <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:<%= @local.place_id %>&key=<%= Rails.application.credentials[:google_maps_api_key] %>" allowfullscreen></iframe> 
+                <% end %>
             </div>
             <nav class="level is-mobile">
               <div class="level-left">

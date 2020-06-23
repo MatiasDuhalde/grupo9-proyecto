@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
+require 'faker'
 
 
 # ----- Admin -----
@@ -43,7 +44,8 @@ csv_locales = CSV.parse(csv_locales_text, :headers => true, :encoding => 'utf-8'
 csv_locales.each do |row|
   local = Local.create! :email => row['email'], :nombre => row['nombre'],
                         :comuna_id => row['comuna_id'], :password => 'qwertyuiop',
-                        :password_confirmation => 'qwertyuiop'
+                        :password_confirmation => 'qwertyuiop', :place_id => row['place_id'],
+                        :descripcion => Faker::Company.bs
 end
 
 # ----- Users -----
@@ -56,6 +58,19 @@ csv_users.each do |row|
                       :password => '123456', :password_confirmation => '123456'
 end
 
+(3...100).each do |x| 
+  random_name = Faker::Name.name
+  random_email = random_name.downcase.tr(" ", "") + "@gmail.com"
+  random_age = (rand() * (50 - 18) + 18).floor
+  random_comuna = (rand() * csv_comunas.length).ceil
+  random_telefono = "+569" + String((rand() * 99999999).floor)
+  random_descripcion = Faker::Lorem.sentence()
+  user = User.create! :email => random_email, :nombre => random_name, :edad => random_age,
+  :comuna_id => random_comuna, :telefono => random_telefono,
+  :password => '123456', :password_confirmation => '123456',
+  :descripcion => random_descripcion
+end
+
 # ----- Reviews -----
 csv_reviews_text = File.read(Rails.root.join('lib', 'seeds', 'reviews.csv'))
 csv_reviews = CSV.parse(csv_reviews_text, :headers => true, :encoding => 'utf-8')
@@ -65,5 +80,17 @@ csv_reviews.each do |row|
   review.comentario = row['comentario']
   review.user_id = row['user_id']
   review.local_id = row['local_id']
+  review.save
+end
+(3...100).each do |x|
+  random_calificacion = (rand() * 10).ceil
+  random_comentario = Faker::Lorem.sentence()
+  random_user_id = (rand() * 100).ceil
+  random_local_id = (rand() * csv_locales.length).ceil()
+  review = Review.new
+  review.calificacion = random_calificacion
+  review.comentario = random_comentario
+  review.user_id = random_user_id
+  review.local_id = random_local_id
   review.save
 end

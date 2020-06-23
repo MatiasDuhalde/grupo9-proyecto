@@ -1,19 +1,20 @@
-nombre,email,comuna_id
-Cinemark,cinemark@gmail.com,30
-Cineplanet,cineplanet@gmail.com,29
-CineHoyts,cinehoyts@gmail.com,24
-Xie Hua Piao Piao,xiehuapiaopiao@gmail.com,18
-Papa Johns,papajohns@gmail.com,20
-Little Caesar's,littlecaesars@gmail.com,21
-Subway,subway@gmail.com,21
-El Fito,elfito@gmail.com,21
-QuickDeli,quickdeli@gmail.com,17
-Mall Plaza Oeste,mallplazaoeste@gmail.com,1
-Mall Plaza Vespucio,mallplazavespucio@gmail.com,25
-Kioto Sushi,kiotosushi@gmail.com,18
-Estadio Monumental,estadiomonumental@gmail.com,17
-Fantasilandia,fantasilandia@gmail.com,27
-Museo Nacional de Bellas Artes,museobellasartes@gmail.com,27
-Costanera Center,costaneracenter@gmail.com,32
-Club Matta,clubmatta@gmail.com,27
-Templo Bahai,templobahai@gmail.com,29
+nombre,email,comuna_id,place_id
+Cinemark,cinemark@gmail.com,30,ChIJrze9ObTOYpYRcGupt8xJNaQ
+Cineplanet,cineplanet@gmail.com,29,ChIJD1orhDLQYpYRFcifcsac5NQ
+CineHoyts,cinehoyts@gmail.com,24,ChIJJzPg80zOYpYRwzwnUjxuckk
+Xie Hua Piao Piao,xiehuapiaopiao@gmail.com,18,ChIJr3ql4FXaYpYR4g8SNTh9w0U
+Papa Johns,papajohns@gmail.com,20,ChIJrR8gHD3DYpYRnCJiWjx13MM
+Little Caesar's,littlecaesars@gmail.com,21,ChIJ7ckQPgbQYpYRIRX7D6_uc8k
+Subway,subway@gmail.com,21,ChIJ3-DxAYnRYpYR8h36w7Jw2v4
+El Fito,elfito@gmail.com,21,ChIJ_WXONwnQYpYRg1eVGXg_3a8
+QuickDeli,quickdeli@gmail.com,17,ChIJr2Y6kg7QYpYRlIu2jV5am7A
+Mall Plaza Oeste,mallplazaoeste@gmail.com,1,ChIJ94Rwa0PbYpYR-kvT9HHNEH0
+Mall Plaza Vespucio,mallplazavespucio@gmail.com,25,ChIJeZl5V2fQYpYRt7SuXS7QPZE
+Kioto Sushi,kiotosushi@gmail.com,18,ChIJdd7Ncs_aYpYRV00gMIQJatw
+Estadio Monumental,estadiomonumental@gmail.com,17,ChIJ340B5jq0vJURijD6W6dgfz0
+Fantasilandia,fantasilandia@gmail.com,27,ChIJr9wRnBzFYpYRMm3sSIEl3e8
+Museo Nacional de Bellas Artes,museobellasartes@gmail.com,27,ChIJ34hkUJjFYpYRukdH5TMSJsQ
+Costanera Center,costaneracenter@gmail.com,32,ChIJUUmF1GnPYpYR39Cq7y_vh5o
+Club Matta,clubmatta@gmail.com,27,ChIJ0Q7pHG3FYpYRfIYPgBVjX9o
+Templo Bahai,templobahai@gmail.com,29,ChIJ4UQ9iRDSYpYR5lRXv4EAQYw
+El Palacio del Poroto con Rienda,palacioporoto@gmail.com,13,ChIJVRf-94zEYpYRwkQuCtC3iMk
