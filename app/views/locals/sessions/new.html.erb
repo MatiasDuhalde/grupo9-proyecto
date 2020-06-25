@@ -1,30 +1,36 @@
-<h2>Iniciar Sesión (Local)</h2>
+<section class="hero is-fullheigth">
+  <div class="hero-body">
+    <div class="container">
+      <h2>Iniciar Sesión (Local)</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email %><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
 
-  <div class="field">
-    <%= f.label "Contraseña" %><br>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <div class="field">
+          <%= f.label "Contraseña" %><br>
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label "Recordarme" %>
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label "Recordarme" %>
+          </div>
+        <% end %>
+
+        <div class="actions">
+          <%= f.submit "Iniciar sesión" %>
+        </div>
+      <% end %>
+
+      <br>
+      <%= render "locals/shared/links" %>
+      <br>
+
+      <%= link_to "Volver a la pagina principal", root_path %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Iniciar sesión" %>
   </div>
-<% end %>
-
-<br>
-<%= render "locals/shared/links" %>
-<br>
-
-<%= link_to "Volver a la pagina principal", root_path %>
+</section>

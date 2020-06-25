@@ -4,26 +4,15 @@
       <div class="columns">
         <div class="column"></div>
         <div class="column">
-          <h1 class="title has-text-white has-text-centered">Lista de Locales</h1>
+          <h1 class="title has-text-white has-text-centered">Locales</h1>
           <div  class="box">
             <div id="size_fixed" class="container">
               <table class="table">
-                <thead>
-                  <tr>
-                    <th>Nombre del Local</th>
-                    <th>Comuna</th>
-                    <th>Calificación</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
                 <tbody>
                   <% @locals.each do |local| %>
                     <tr>
                       <td> <%= local.nombre %> </td>
-                      <td> <%= local.comuna.nombre %> </td>
-                      <% promedio = get_promedio_local(local) %>
-                      <td> <%= promedio != 0 ? promedio : "Sin reviews" %> </td>
-                      <td> <%= link_to "Ver detalles", local_path(local.id) %> </td>
+                      <td> <%= link_to "Ver detalles", local_path(local.id), class:"button is-primary" %> </td>
                     </tr>
                   <% end %>
                 </tbody>
