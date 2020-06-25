@@ -4,21 +4,15 @@
       <div class="columns">
         <div class="column"></div>
         <div class="column">
-          <h1 class="title has-text-white has-text-centered">Lista de comunas</h1>
+          <h1 class="title has-text-white has-text-centered">Comunas</h1>
           <div  class="box">
             <div id="size_fixed" class="container">
               <table class="table">
-                <thead>
-                  <tr>
-                    <th>Nombre de la comuna</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
                 <tbody>
                   <% @comunas.each do |comuna| %>
                     <tr>
                       <td> <%= comuna.nombre %> </td>
-                      <td> <%= link_to "Ver detalles", comuna_path(comuna.id) %> </td>
+                      <td> <%= link_to "Detalles", comuna_path(comuna.id), class:"button is-primary" %> </td>
                     </tr>
                   <% end %>
                 </tbody>
