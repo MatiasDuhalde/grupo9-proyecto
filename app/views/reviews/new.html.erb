@@ -1,22 +1,42 @@
-<h1>Crear review</h1>
+<section id="user_index_img" class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+        <div class="column"></div>
+        <div class="column">
+          <h2 class="title has-text-white has-text-centered">Crear review</h2>
+          <div class="box">
+            <div class="container">
+              <%= form_with(model: @review, method: :post) do |f| %>
+                <div class="field">
+                  <%= f.label :calificacion, class:"label"  %>
+                  <%= f.number_field :calificacion, in: 1...11, required: true, class:"input" %>
+                </div>
 
-<%= form_with(model: @review, method: :post) do |f| %>
-  <div class="field">
-    <%= f.label :calificacion %>
-    <%= f.number_field :calificacion, in: 1...11, required: true %>
+                <div class="field">
+                  <%= f.label :comentario, class:"label" %>
+                  <%= f.text_area :comentario, class:"textarea"  %>
+                </div>
+
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <%= f.hidden_field :local_id, :value => params[:local_id].to_i %>
+
+                <div class="actions">
+                  <div class="columns">
+                  <div class="column"></div>
+                  <div class="column"><%= f.submit %></div>
+                  <div class="column"></div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <button id="buttonuser" class="button">
+            <%= link_to "Volver", :back %>
+          </button>
+        </div>
+        <div class="column"></div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :comentario %>
-    <%= f.text_area :comentario %>
-  </div>
-
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.hidden_field :local_id, :value => params[:local_id].to_i %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
-<%= link_to "Volver", :back %>
+</section>
