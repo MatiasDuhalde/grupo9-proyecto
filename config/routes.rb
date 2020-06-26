@@ -36,13 +36,15 @@ Rails.application.routes.draw do
   # DELETE
   delete 'comunas/:id', to: 'comunas#destroy'
   # ------------------------------------------------------------------------------------------------
-  devise_for :users, path: 'users', controllers: { sessions: "locals/sessions" }
+  devise_for :users, path: 'users', controllers: { sessions: "users/sessions",
+                                                   registrations: "users/registrations" }
   # READ
   get 'users/index', to: 'users#index'
   get 'users/:id', to: 'users#show', as: 'user'
 
   # ------------------------------------------------------------------------------------------------
-  devise_for :locals, path: 'locals', controllers: { sessions: "locals/sessions" }
+  devise_for :locals, path: 'locals', controllers: { sessions: "locals/sessions",
+                                                     registrations: "locals/registrations" }
   # READ
   get 'locals/index', to: 'locals#index'
   get 'locals/:id', to: 'locals#show', as: 'local'
